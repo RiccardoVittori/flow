@@ -38,6 +38,6 @@ Il repository del libro resta indipendente. Nessun capitolo, registro, fixture o
 
 Repository BLOG indipendente. `.env` ignorato prima dell'inizializzazione Git; il token serve solo alle operazioni GitHub locali e non alla build. GitHub Actions usa GITHUB_TOKEN con permessi minimi. Dipendenze riproducibili con pnpm lock e audit. Nessun cookie applicativo, analytics o font remoto. Il gestore GitHub Pages conserva i propri log: documentarlo nell'informativa.
 
-## Compatibilit? verificate durante implementazione
+## Compatibilità verificate durante implementazione
 
-Astro 7.3.5, MDX 8.0.2, Pagefind 1.5.2, pnpm 12.6.0, Node 24.21.0. TypeScript 6.0.3 perch? i peer di Astro Check e typescript-eslint escludono 7. Sharp esplicito richiesto dal servizio immagini. Pagefind Default UI ? ancora supportata: scelta qui per ricerca inline semplice e API di query precompilata, verificata con axe; valutata la nuova Component UI 1.5 per future interfacce modali. Nessun servizio remoto nella ricerca.
+Astro 7.3.5, MDX 8.0.2, Pagefind 1.5.2, pnpm 12.6.0, Node 24.21.0. TypeScript 6.0.3 perché i peer di Astro Check e typescript-eslint escludono 7. Sharp esplicito richiesto dal servizio immagini. Pagefind Default UI è ancora supportata: scelta qui per ricerca inline semplice e API di query precompilata, verificata con axe; valutata la nuova Component UI 1.5 per future interfacce modali. Nessun servizio remoto nella ricerca.

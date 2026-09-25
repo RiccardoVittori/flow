@@ -4,6 +4,8 @@ Natura, conoscenza, esplorazione. Primo verticale: **Il Cercatore — Tartufi, n
 
 Sito statico Astro, TypeScript strict, MDX, Pagefind, CSS nativo. Repository indipendente dal progetto del libro.
 
+[Visita FLOW](https://riccardovittori.github.io/flow/) · [Repository GitHub](https://github.com/RiccardoVittori/flow) · [Deploy e controlli](https://github.com/RiccardoVittori/flow/actions/workflows/deploy.yml)
+
 ## Avvio
 
 Node 24 LTS e pnpm 12.6.0. Le versioni effettive sono fissate nel lockfile. TypeScript 6 è scelto perché Astro Check e typescript-eslint non supportano ancora TypeScript 7.

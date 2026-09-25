@@ -14,6 +14,14 @@ export async function articles() {
   const slugs = entries.map((entry) => entry.data.slug);
   if (new Set(slugs).size !== slugs.length)
     throw new Error('Slug articolo duplicato');
+  for (const entry of entries) {
+    for (const ref of entry.data.relatedContent.filter(
+      (ref) => ref.collection === 'articles',
+    )) {
+      if (!entries.some((other) => other.id === ref.id))
+        throw new Error(`Relazione articolo non pubblicabile: ${ref.id}`);
+    }
+  }
   return entries;
 }
 export async function related(entry: CollectionEntry<'articles'>) {

@@ -18,10 +18,10 @@ Le collection species, glossary, places, books ed experiences sono intenzionalme
 
 ## Lighthouse locale, mobile simulato
 
-| Pagina | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Homepage | 97 | 100 | 100 | 100 | 2,482 s | 0,0012 | 0 ms |
-| Articolo Il Cercatore | 97 | 100 | 100 | 100 | 2,407 s | 0,0405 | 0 ms |
+| Pagina                | Performance | Accessibility | Best Practices | SEO | LCP     | CLS    | TBT  |
+| --------------------- | ----------- | ------------- | -------------- | --- | ------- | ------ | ---- |
+| Homepage              | 97          | 100           | 100            | 100 | 2,482 s | 0,0012 | 0 ms |
+| Articolo Il Cercatore | 97          | 100           | 100            | 100 | 2,407 s | 0,0405 | 0 ms |
 
 Lighthouse 13.5.0, preview localhost, singola esecuzione per pagina. Questi dati sono sintetici: non certificano CWV reali, tempi su CDN o INP sul campo. INP non misurato. Margine LCP ridotto sulla homepage; controllare con dati reali dopo il lancio. Audit automatico axe non equivale a una certificazione WCAG né a una prova completa con screen reader. Browser mobile simulato, non dispositivo fisico.
 
