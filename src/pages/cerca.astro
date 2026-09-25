@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import { href } from '../lib/urls';
+---
+
+<Base
+  title="Cerca nell’atlante — FLOW"
+  description="Cerca nelle letture FLOW: titoli, temi, nomi scientifici e appunti."
+>
+  <link slot="head" rel="stylesheet" href={href('pagefind/pagefind-ui.css')} />
+  <div class="wrap">
+    <header class="page-heading">
+      <p class="eyebrow">SEGUI UNA DOMANDA</p>
+      <h1>
+        Che cosa ti
+        <br />
+        <em>incuriosisce?</em>
+      </h1>
+      <p class="dek">
+        Cerca nel testo delle letture. Prova «bosco», «tartufi» o «taccuino».
+      </p>
+    </header>
+    <div class="search-box">
+      <div id="search"></div>
+      <noscript>
+        <p>
+          La ricerca richiede JavaScript. Puoi leggere tutti i contenuti nel{' '}
+          <a href={href('taccuino/')}>taccuino</a>.
+        </p>
+      </noscript>
+      <p id="search-error" hidden>
+        Ricerca non disponibile.{' '}
+        <a href={href('taccuino/')}>Sfoglia il taccuino</a>.
+      </p>
+    </div>
+  </div>
+  <script is:inline src={href('pagefind/pagefind-ui.js')}></script>
+  <script is:inline>
+    if (window.PagefindUI) {
+      const ui = new window.PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        showImages: false,
+        translations: {
+          placeholder: 'Cerca nel mondo FLOW',
+          zero_results: 'Nessun risultato per [SEARCH_TERM]',
+          searching: 'Ricerca in corso…',
+          clear_search: 'Cancella',
+        },
+      });
+      const q = new URLSearchParams(window.location.search).get('q');
+      if (q) ui.triggerSearch(q);
+    } else {
+      document.getElementById('search-error').hidden = false;
+    }
+  </script>
+</Base>
+<style is:global>
+  #search {
+    --pagefind-ui-primary: #3c4930;
+    --pagefind-ui-text: #262c25;
+    --pagefind-ui-background: #f3f0e8;
+    --pagefind-ui-border: #878d7e;
+    --pagefind-ui-border-radius: 0;
+    --pagefind-ui-font: 'Manrope Variable', sans-serif;
+    max-width: 900px;
+  }
+  .pagefind-ui__search-input {
+    min-height: 56px;
+  }
+</style>

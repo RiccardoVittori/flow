@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import woods from '../assets/woods.jpg';
+import { href } from '../lib/urls';
+---
+
+<Base
+  title="Il Cercatore — Tartufi, natura e arte di leggere il bosco"
+  description="Il primo verticale di FLOW. Un progetto editoriale dedicato ai tartufi, alle relazioni del bosco e all’arte di osservare."
+>
+  <div class="wrap">
+    <header class="page-heading">
+      <p class="eyebrow">IL PRIMO CAPITOLO DI FLOW</p>
+      <h1>Il Cercatore</h1>
+      <p class="dek">Tartufi, natura e arte di leggere il bosco.</p>
+    </header>
+    <figure class="article-hero">
+      <Picture
+        src={woods}
+        alt="Bosco di conifere riflesso in un lago, con rilievi sullo sfondo"
+        widths={[640, 1000, 1440]}
+        sizes="92vw"
+        formats={['avif', 'webp']}
+        loading="eager"
+      />
+    </figure>
+    <div class="article-layout">
+      <aside class="toc">
+        <a href="#percorso">Il percorso</a>
+        <a href="#libro">Il libro</a>
+      </aside>
+      <div class="prose" data-pagefind-body>
+        <h2 id="percorso">Un percorso, molte relazioni</h2>
+        <p>
+          Il tartufo è il punto di partenza di una ricerca che attraversa
+          specie, alberi, suolo, habitat e cultura. Il Cercatore vuole costruire
+          un linguaggio per raccontare queste connessioni con cura.
+        </p>
+        <p>
+          Le prime letture presentano il progetto e il metodo. L’atlante
+          scientifico sarà sviluppato con fonti, provenienza e limiti
+          dichiarati.
+        </p>
+        <a
+          class="text-link"
+          href={href('taccuino/il-cercatore-da-dove-comincia-il-cammino/')}
+        >
+          Leggi la prima pagina ↗
+        </a>
+        <h2 id="libro">Dalla ricerca al libro</h2>
+        <p>
+          Il volume è in lavorazione. La copertina mostrata nella homepage è uno
+          studio grafico: non rappresenta un’edizione già disponibile.
+        </p>
+        <p>
+          Non sono ancora annunciati data di pubblicazione, prezzo o preordini.
+        </p>
+        <a class="text-link" href={href('rss.xml')}>
+          Segui gli aggiornamenti via RSS ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,12 @@
+---
+interface Props {
+  name: string;
+  authority?: string;
+}
+const { name, authority } = Astro.props;
+---
+
+<span>
+  <i lang="la">{name}</i>
+  {authority && ` ${authority}`}
+</span>

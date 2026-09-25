@@ -1,0 +1,45 @@
+---
+import Base from '../src/layouts/Base.astro';
+import Fixture from './fixtures/editorial.mdx';
+import Figure from '../src/components/editorial/Figure.astro';
+import Gallery from '../src/components/editorial/Gallery.astro';
+import Map from '../src/components/knowledge/Map.astro';
+import SpeciesCard from '../src/components/knowledge/SpeciesCard.astro';
+import ExperienceCTA from '../src/components/commerce/ExperienceCTA.astro';
+import CartTrigger from '../src/components/commerce/CartTrigger.astro';
+import woods from '../src/assets/woods.jpg';
+---
+
+<Base title="TEST — Laboratorio FLOW" noindex>
+  <div class="wrap section">
+    <div class="prose">
+      <Fixture />
+      <Gallery label="Galleria TEST">
+        <Figure
+          src={woods}
+          alt="Bosco, fotografia di test"
+          caption="TEST — fotografia ambientale"
+        />
+        <Figure
+          src={woods}
+          alt="Bosco, seconda figura di test"
+          caption="TEST — nessuna identificazione"
+        />
+      </Gallery>
+      <SpeciesCard
+        name="Voce TEST, non identificativa"
+        scientificName="Tuber sp."
+        description="Fixture di impaginazione: non una scheda scientifica."
+        sourceUrl="https://www.gbif.org/"
+      />
+      <Map
+        latitude={0}
+        longitude={0}
+        label="TEST — origine delle coordinate"
+        description="Punto di test, non una località di raccolta."
+      />
+      <ExperienceCTA />
+      <CartTrigger />
+    </div>
+  </div>
+</Base>

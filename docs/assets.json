@@ -1,0 +1,24 @@
+[
+  {
+    "id": "forest",
+    "path": "src/assets/forest.jpg",
+    "source": "https://images.unsplash.com/photo-1448375240586-882707db888b",
+    "license": "https://unsplash.com/license",
+    "downloaded": "2026-09-25",
+    "sha256": "9d3fbfab1a28f9adc3e89300cde75703bb2472255ea2bc8942a2f6733a531960",
+    "modifications": "Responsive resizing, format conversion and layout crop",
+    "purpose": "Environmental illustration; no location or taxonomic identification claimed",
+    "author": "Not independently verified; no attribution name invented"
+  },
+  {
+    "id": "woods",
+    "path": "src/assets/woods.jpg",
+    "source": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8",
+    "license": "https://unsplash.com/license",
+    "downloaded": "2026-09-25",
+    "sha256": "23e3fb2f950bca785317b2aebd502944aa9b05469f3150806fdf62100f251996",
+    "modifications": "Responsive resizing, format conversion and layout crop",
+    "purpose": "Environmental illustration; no location or taxonomic identification claimed",
+    "author": "Not independently verified; no attribution name invented"
+  }
+]

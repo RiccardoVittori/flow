@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import { areas, topics } from '../../config/taxonomy';
+import { href } from '../../lib/urls';
+---
+
+<Base
+  title="Esplora gli orizzonti — FLOW"
+  description="Tartufi e bosco: i primi percorsi di FLOW. Scopri la mappa dei temi e gli orizzonti futuri."
+>
+  <div class="wrap">
+    <header class="page-heading">
+      <p class="eyebrow">L’ATLANTE FLOW</p>
+      <h1>
+        Tutto comincia
+        <br />
+        <em>da una connessione.</em>
+      </h1>
+      <p class="dek">
+        Scegli un orizzonte. Il primo sentiero attraversa il bosco.
+      </p>
+    </header>
+    <div class="area-grid page-body">
+      {areas.map((area, i) => (
+        <a class="area-item" href={href(`esplora/${area.id}/`)}>
+          <span class="eyebrow">
+            0{i + 1} · {area.active ? 'Primi appunti' : 'In progetto'}
+          </span>
+          <h3>{area.title}</h3>
+          <p>{area.subtitle}</p>
+          <span class="area-bottom">Scopri la direzione ↗</span>
+        </a>
+      ))}
+    </div>
+    <section class="page-body">
+      <h2>Le domande del Cercatore</h2>
+      <p class="dek">
+        Una mappa editoriale in crescita. Ogni tema conduce alle letture
+        disponibili o alla ricerca.
+      </p>
+      <div class="topic-list">
+        {topics.map((topic) => (
+          <a
+            href={href(
+              `cerca/?q=${encodeURIComponent(topic.replaceAll('-', ' '))}`,
+            )}
+          >
+            {topic.replaceAll('-', ' ')}
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  date?: string;
+}
+const { title, date } = Astro.props;
+---
+
+<aside class="notice">
+  <p class="eyebrow">
+    APPUNTO DI CAMPO {date && <time datetime={date}>{date}</time>}
+  </p>
+  <strong>{title}</strong>
+  <div>
+    <slot />
+  </div>
+</aside>

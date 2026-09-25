@@ -1,0 +1,193 @@
+---
+import Base from '../../layouts/Base.astro';
+import { articles, related } from '../../lib/content';
+import { render } from 'astro:content';
+import { Picture } from 'astro:assets';
+import { href, absolute } from '../../lib/urls';
+import StoryCard from '../../components/editorial/StoryCard.astro';
+import { relatedKnowledge } from '../../lib/knowledge';
+export async function getStaticPaths() {
+  return (await articles()).map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const others = await related(entry);
+const connections = await relatedKnowledge(
+  entry.data.topics,
+  entry.data.relatedContent,
+);
+const date = (d: Date) =>
+  d.toLocaleDateString('it-IT', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+const status = {
+  editorial: 'Intento editoriale',
+  experience: 'Esperienza',
+  hypothesis: 'Ipotesi',
+  evidence: 'Approfondimento con fonti',
+};
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: entry.data.title,
+    description: entry.data.description,
+    datePublished: entry.data.publishedDate.toISOString(),
+    dateModified: (
+      entry.data.updatedDate || entry.data.publishedDate
+    ).toISOString(),
+    author: { '@type': 'Person', name: entry.data.author },
+    publisher: { '@type': 'Organization', name: 'FLOW' },
+    image: new URL(entry.data.heroImage.src, Astro.site).href,
+    mainEntityOfPage: absolute(`taccuino/${entry.data.slug}/`),
+    inLanguage: 'it',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'FLOW', item: absolute() },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Taccuino',
+        item: absolute('taccuino/'),
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: entry.data.title,
+        item: absolute(`taccuino/${entry.data.slug}/`),
+      },
+    ],
+  },
+];
+---
+
+<Base
+  title={`${entry.data.title} — FLOW`}
+  description={entry.data.description}
+  image={new URL(entry.data.heroImage.src, Astro.site).href}
+  article
+>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schema).replace(/</g, '\\u003c')}
+  ></script>
+  <article data-pagefind-body>
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="Percorso">
+        <a href={href()}>FLOW</a>
+        <span>/</span>
+        <a href={href('taccuino/')}>Taccuino</a>
+        <span>/</span>
+        <span aria-current="page">{entry.data.category}</span>
+      </nav>
+      <header class="page-heading">
+        <p class="eyebrow" data-pagefind-filter="Categoria">
+          {entry.data.category}
+        </p>
+        <h1 data-pagefind-meta="title">{entry.data.title}</h1>
+        <p class="dek" data-pagefind-meta="description">
+          {entry.data.description}
+        </p>
+        <div class="article-meta">
+          <span>{entry.data.author}</span>
+          <time datetime={entry.data.publishedDate.toISOString()}>
+            {date(entry.data.publishedDate)}
+          </time>
+          <span>{entry.data.readingTime} min di lettura</span>
+          <span>{status[entry.data.knowledgeStatus]}</span>
+        </div>
+        {entry.data.updatedDate && (
+          <p class="article-meta">
+            Aggiornato il {date(entry.data.updatedDate)}
+          </p>
+        )}
+      </header>
+      <figure class="article-hero">
+        <Picture
+          src={entry.data.heroImage}
+          alt={entry.data.heroAlt}
+          widths={[640, 1000, 1440]}
+          sizes="(max-width: 1440px) 92vw, 1280px"
+          formats={['avif', 'webp']}
+          loading="eager"
+        />
+        <figcaption>
+          Fotografia ambientale ·{' '}
+          <a href={href('crediti/')}>Fonti e crediti delle immagini</a>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="wrap article-layout">
+      <aside class="toc" data-pagefind-ignore>
+        <p class="eyebrow">IN QUESTA PAGINA</p>
+        {headings
+          .filter((h) => h.depth === 2)
+          .map((h) => (
+            <a href={`#${h.slug}`}>{h.text}</a>
+          ))}
+      </aside>
+      <div class="prose">
+        <Content />
+        {entry.data.sources.length > 0 && (
+          <section>
+            <h2>Fonti e riferimenti</h2>
+            <ol>
+              {entry.data.sources.map((source) => (
+                <li>
+                  <a href={source.url}>{source.title}</a>
+                  {source.note && <p>{source.note}</p>}
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+        <div class="tags" aria-label="Argomenti">
+          {[...entry.data.tags, ...entry.data.scientificNames].map((tag) => (
+            <span>{tag}</span>
+          ))}
+        </div>
+        <div class="author-note">
+          <strong>{entry.data.author}</strong>
+          <p>Autore del progetto Il Cercatore e ideatore di FLOW.</p>
+          <a href={href('manifesto/')}>Il metodo editoriale</a>
+        </div>
+      </div>
+    </div>
+  </article>
+  {connections.length > 0 && (
+    <section class="wrap section">
+      <h2>Conoscenze collegate</h2>
+      <div class="topic-list">
+        {connections.map((item) => (
+          <a href={item.url}>{item.title}</a>
+        ))}
+      </div>
+    </section>
+  )}
+  {others.length > 0 && (
+    <section class="wrap section">
+      <div class="section-heading">
+        <h2>
+          La prossima <em>domanda.</em>
+        </h2>
+        <a class="text-link" href={href('esplora/')}>
+          Continua a esplorare ↗
+        </a>
+      </div>
+      <div class="stories-grid">
+        {others.map((entry) => (
+          <StoryCard entry={entry} />
+        ))}
+      </div>
+    </section>
+  )}
+</Base>

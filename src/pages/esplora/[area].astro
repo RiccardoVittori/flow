@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { areas } from '../../config/taxonomy';
+import { articles } from '../../lib/content';
+import { href } from '../../lib/urls';
+import StoryCard from '../../components/editorial/StoryCard.astro';
+export function getStaticPaths() {
+  return areas.map((area) => ({ params: { area: area.id }, props: { area } }));
+}
+const { area } = Astro.props;
+const posts = (await articles()).filter(
+  (entry) => entry.data.category === area.id,
+);
+---
+
+<Base title={`${area.title} — Esplora FLOW`} description={area.subtitle}>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Percorso">
+      <a href={href('esplora/')}>Esplora</a>
+      <span>/</span>
+      <span aria-current="page">{area.title}</span>
+    </nav>
+    <header class="page-heading">
+      <p class="eyebrow">
+        {area.active ? 'UN PERCORSO FLOW' : 'ORIZZONTE FUTURO'}
+      </p>
+      <h1>{area.title}</h1>
+      <p class="dek">{area.subtitle}.</p>
+    </header>
+    <section class="page-body">
+      {posts.length ? (
+        <div class="stories-grid">
+          {posts.map((entry) => (
+            <StoryCard entry={entry} />
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <h2>Un sentiero ancora da aprire.</h2>
+          <p class="dek">
+            Questo ambito fa parte della direzione futura di FLOW. Non ci sono
+            ancora{' '}
+            {area.id === 'esperienze'
+              ? 'esperienze prenotabili'
+              : 'contenuti pubblicati'}
+            .
+          </p>
+          <a class="text-link" href={href('taccuino/')}>
+            Leggi le prime pagine del taccuino ↗
+          </a>
+        </div>
+      )}
+    </section>
+  </div>
+</Base>

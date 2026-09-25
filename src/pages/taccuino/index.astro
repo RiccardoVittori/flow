@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import StoryCard from '../../components/editorial/StoryCard.astro';
+import { articles } from '../../lib/content';
+const posts = await articles();
+---
+
+<Base
+  title="Il taccuino — FLOW"
+  description="Letture, domande e appunti dal progetto FLOW e dal mondo del Cercatore."
+>
+  <div class="wrap">
+    <header class="page-heading">
+      <p class="eyebrow">IL TACCUINO FLOW</p>
+      <h1>
+        Appunti da un mondo
+        <br />
+        <em>da esplorare.</em>
+      </h1>
+      <p class="dek">Le prime pagine: il progetto, il metodo, le domande.</p>
+    </header>
+    <section class="stories-grid page-body" aria-label="Tutte le letture">
+      {posts.map((entry, index) => (
+        <StoryCard entry={entry} index={index} />
+      ))}
+    </section>
+  </div>
+</Base>

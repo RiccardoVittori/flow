@@ -1,0 +1,25 @@
+---
+import CTA from './CTA.astro';
+import Price from './Price.astro';
+interface Props {
+  title: string;
+  description: string;
+  url?: string;
+  amount?: number;
+  available?: boolean;
+}
+const { title, description, url, amount, available = false } = Astro.props;
+---
+
+<aside class="notice">
+  <strong>{title}</strong>
+  <p>{description}</p>
+  {available && url ? (
+    <>
+      {amount !== undefined && <Price amount={amount} />}
+      <CTA url={url} label="Scopri la proposta" />
+    </>
+  ) : (
+    <p>Progetto in lavorazione · non disponibile per l’acquisto.</p>
+  )}
+</aside>

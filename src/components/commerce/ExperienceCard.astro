@@ -1,0 +1,12 @@
+---
+import ProductCard from './ProductCard.astro';
+interface Props {
+  title: string;
+  description: string;
+  url?: string;
+  amount?: number;
+  available?: boolean;
+}
+---
+
+<ProductCard {...Astro.props} />

@@ -1,0 +1,19 @@
+---
+import ScientificName from '../editorial/ScientificName.astro';
+interface Props {
+  name: string;
+  scientificName: string;
+  description: string;
+  sourceUrl: string;
+}
+const { name, scientificName, description, sourceUrl } = Astro.props;
+---
+
+<aside class="notice">
+  <strong>{name}</strong>
+  <p>
+    <ScientificName name={scientificName} />
+  </p>
+  <p>{description}</p>
+  <a href={sourceUrl}>Consulta la fonte</a>
+</aside>

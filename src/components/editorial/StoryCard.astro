@@ -1,0 +1,36 @@
+---
+import { Picture } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { href } from '../../lib/urls';
+interface Props {
+  entry: CollectionEntry<'articles'>;
+  index?: number;
+}
+const { entry, index = 0 } = Astro.props;
+---
+
+<article class="story-card">
+  <a
+    class="story-image"
+    tabindex="-1"
+    aria-hidden="true"
+    href={href(`taccuino/${entry.data.slug}/`)}
+  >
+    <Picture
+      src={entry.data.heroImage}
+      alt=""
+      widths={[400, 700, 1000]}
+      sizes="(max-width: 700px) 100vw, 45vw"
+      formats={['avif', 'webp']}
+      loading="lazy"
+    />
+    <span class="image-number">0{index + 1}</span>
+  </a>
+  <div class="eyebrow card-meta">
+    {entry.data.category} <span>· {entry.data.readingTime} min di lettura</span>
+  </div>
+  <h3>
+    <a href={href(`taccuino/${entry.data.slug}/`)}>{entry.data.title}</a>
+  </h3>
+  <p>{entry.data.description}</p>
+</article>

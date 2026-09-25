@@ -1,0 +1,27 @@
+---
+interface Props {
+  latitude: number;
+  longitude: number;
+  label: string;
+  description: string;
+}
+const { latitude, longitude, label, description } = Astro.props;
+if (Math.abs(latitude) > 90 || Math.abs(longitude) > 180)
+  throw new Error('Coordinate non valide');
+---
+
+<figure class="notice">
+  <strong>{label}</strong>
+  <p>{description}</p>
+  <p>
+    Coordinate: {latitude}, {longitude}
+  </p>
+  <a
+    href={`https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=11/${latitude}/${longitude}`}
+  >
+    Apri la mappa su OpenStreetMap ↗
+  </a>
+  <figcaption>
+    Cartografia © contributori OpenStreetMap. Il link apre un servizio esterno.
+  </figcaption>
+</figure>

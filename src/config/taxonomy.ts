@@ -1,0 +1,72 @@
+export const areas = [
+  {
+    id: 'tartufi',
+    title: 'Tartufi',
+    subtitle: 'Il mondo sotto i nostri piedi',
+    active: true,
+  },
+  {
+    id: 'bosco',
+    title: 'Bosco',
+    subtitle: 'Imparare a leggere il paesaggio',
+    active: true,
+  },
+  {
+    id: 'foraging',
+    title: 'Foraging',
+    subtitle: 'Conoscere prima di raccogliere',
+    active: false,
+  },
+  {
+    id: 'pratiche',
+    title: 'Corpo & pratiche',
+    subtitle: 'Attenzione, movimento, presenza',
+    active: false,
+  },
+  {
+    id: 'survival',
+    title: 'Survival',
+    subtitle: 'Abitare l’essenziale',
+    active: false,
+  },
+  {
+    id: 'arti-marziali',
+    title: 'Arti marziali',
+    subtitle: 'Tradizione e ricerca',
+    active: false,
+  },
+  {
+    id: 'viaggi',
+    title: 'Viaggi',
+    subtitle: 'Territori da attraversare',
+    active: false,
+  },
+  {
+    id: 'esperienze',
+    title: 'Esperienze',
+    subtitle: 'La conoscenza prende forma',
+    active: false,
+  },
+  {
+    id: 'libri',
+    title: 'Libri',
+    subtitle: 'Storie da portare con sé',
+    active: false,
+  },
+] as const;
+export const topics = [
+  'specie',
+  'alberi-simbionti',
+  'micorrize',
+  'micelio',
+  'suolo',
+  'habitat',
+  'clima',
+  'cane',
+  'ricerca',
+  'raccolta',
+  'conservazione',
+  'cucina',
+  'territori',
+  'cultura',
+] as const;

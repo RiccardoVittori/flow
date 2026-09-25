@@ -1,0 +1,39 @@
+---
+title: TEST — Componenti editoriali
+test: true
+draft: true
+---
+
+import Callout from '../../src/components/editorial/Callout.astro';
+import FieldNote from '../../src/components/editorial/FieldNote.astro';
+import Quote from '../../src/components/editorial/Quote.astro';
+import Comparison from '../../src/components/editorial/Comparison.astro';
+import Timeline from '../../src/components/editorial/Timeline.astro';
+import BookCTA from '../../src/components/commerce/BookCTA.astro';
+
+# TEST — Laboratorio MDX
+
+Questo contenuto è una fixture, esclusa dalle collection di produzione.
+
+<Callout title="Esempio di nota">
+  Testo dimostrativo senza affermazioni scientifiche.
+</Callout>
+<FieldNote title="Osservazione TEST">
+  Nessuna esperienza reale è attestata.
+</FieldNote>
+<Quote attribution="Fixture FLOW">Uno spazio per una domanda.</Quote>
+<Comparison
+  caption="Confronto TEST"
+  headers={['Voce', 'Stato']}
+  rows={[
+    ['Esempio A', 'Non verificato'],
+    ['Esempio B', 'Non verificato'],
+  ]}
+/>
+<Timeline
+  items={[
+    { label: 'Osservare', description: 'Primo passaggio TEST' },
+    { label: 'Verificare', description: 'Secondo passaggio TEST' },
+  ]}
+/>
+<BookCTA />

@@ -1,0 +1,14 @@
+---
+interface Props {
+  checkoutUrl?: string;
+}
+const { checkoutUrl } = Astro.props;
+if (checkoutUrl && !checkoutUrl.startsWith('https://'))
+  throw new Error('Checkout richiede HTTPS');
+---
+
+{checkoutUrl && (
+  <a class="button" href={checkoutUrl}>
+    Vai al checkout ↗
+  </a>
+)}
