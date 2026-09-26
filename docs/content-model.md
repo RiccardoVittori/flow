@@ -14,6 +14,10 @@ Stati epistemici: editorial (intenti/metodo), experience (esperienza documentata
 
 Collection species, glossary, places, books, experiences predisposte e inizialmente vuote. Tutte hanno i campi comuni e corpi MDX. Route generate sotto `atlante/<collection>/<slug>/` solo quando esistono record pubblicabili. Le relazioni esplicite usano `{ collection, id }`; i suggerimenti automatici incrociano topics. Articoli ordinati per pertinenza; collegamenti alle altre collection mostrati se esistono record reali. Non sono inventate schede biologiche o località per riempire la UI.
 
+## Percorsi per argomento
+
+`src/lib/topics.ts` unisce articoli e voci dell’atlante già pubblicabili. La build genera `argomenti/<topic>/` soltanto per temi con almeno una lettura; conteggi e collegamenti derivano dalle collection. La pagina Esplora mostra i temi futuri in un elenco espandibile senza link verso risultati vuoti. Gli articoli e le schede rimandano ai rispettivi percorsi con navigazione HTML funzionante anche senza JavaScript. Gli indici tematici entrano nella sitemap ma non duplicano gli articoli nell’indice di ricerca Pagefind.
+
 ## Componenti MDX
 
 Importare da `src/components/editorial`: Figure (ImageMetadata, alt, caption), Gallery (label), Callout (title), FieldNote (title, date), ScientificName (name, authority), Quote (attribution), Comparison (caption, headers, rows), Timeline (items). Da knowledge: SpeciesCard e Map (coordinate e equivalente testuale con link OSM). Da commerce: BookCTA, ExperienceCTA, ProductCard, BookCard, ExperienceCard, Price, CTA, CartTrigger.

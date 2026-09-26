@@ -1,7 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { areas, topics } from '../../config/taxonomy';
+import { areas } from '../../config/taxonomy';
 import { href } from '../../lib/urls';
+import { topicIndex } from '../../lib/topics';
+import { articles } from '../../lib/content';
+const [index, posts] = await Promise.all([topicIndex(), articles()]);
+const publishedTopics = index.filter((topic) => topic.count > 0);
+const futureTopics = index.filter((topic) => topic.count === 0);
+const counts = new Map(
+  areas.map((area) => [
+    area.id,
+    posts.filter((entry) => entry.data.category === area.id).length,
+  ]),
+);
 ---
 
 <Base
@@ -24,7 +35,10 @@ import { href } from '../../lib/urls';
       {areas.map((area, i) => (
         <a class="area-item" href={href(`esplora/${area.id}/`)}>
           <span class="eyebrow">
-            0{i + 1} · {area.active ? 'Primi appunti' : 'In progetto'}
+            0{i + 1} ·{' '}
+            {counts.get(area.id)
+              ? `${counts.get(area.id)} ${counts.get(area.id) === 1 ? 'lettura' : 'letture'}`
+              : 'In progetto'}
           </span>
           <h3>{area.title}</h3>
           <p>{area.subtitle}</p>
@@ -32,23 +46,37 @@ import { href } from '../../lib/urls';
         </a>
       ))}
     </div>
-    <section class="page-body">
+    <section class="page-body" id="argomenti">
       <h2>Le domande del Cercatore</h2>
       <p class="dek">
-        Una mappa editoriale in crescita. Ogni tema conduce alle letture
-        disponibili o alla ricerca.
+        Scegli un argomento e ritrova le letture collegate, anche quando
+        appartengono a percorsi diversi.
       </p>
       <div class="topic-list">
-        {topics.map((topic) => (
-          <a
-            href={href(
-              `cerca/?q=${encodeURIComponent(topic.replaceAll('-', ' '))}`,
-            )}
-          >
-            {topic.replaceAll('-', ' ')}
+        {publishedTopics.map((topic) => (
+          <a href={topic.url}>
+            {topic.title}{' '}
+            <span class="topic-count">
+              {topic.count} {topic.count === 1 ? 'lettura' : 'letture'}
+            </span>
+            <span aria-hidden="true">↗</span>
           </a>
         ))}
       </div>
+      {futureTopics.length > 0 && (
+        <details class="future-topics">
+          <summary>Gli argomenti ancora da sviluppare</summary>
+          <p>
+            Fanno parte della mappa editoriale, ma non hanno ancora letture
+            pubblicate.
+          </p>
+          <ul>
+            {futureTopics.map((topic) => (
+              <li>{topic.title}</li>
+            ))}
+          </ul>
+        </details>
+      )}
     </section>
   </div>
 </Base>

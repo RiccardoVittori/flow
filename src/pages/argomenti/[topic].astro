@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import StoryCard from '../../components/editorial/StoryCard.astro';
+import { topicIndex } from '../../lib/topics';
+import { href, absolute } from '../../lib/urls';
+
+export async function getStaticPaths() {
+  return (await topicIndex())
+    .filter((topic) => topic.count > 0)
+    .map((topic) => ({ params: { topic: topic.id }, props: { topic } }));
+}
+const { topic } = Astro.props;
+const description = `Le letture FLOW collegate a ${topic.title.toLocaleLowerCase('it')}: appunti e percorsi da esplorare.`;
+const entries = [
+  ...topic.articles.map((entry) => ({
+    title: entry.data.title,
+    path: `taccuino/${entry.data.slug}/`,
+  })),
+  ...topic.knowledge.map((entry) => ({
+    title: entry.data.title,
+    path: `atlante/${entry.collection}/${entry.data.slug}/`,
+  })),
+];
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `${topic.title} — FLOW`,
+  description,
+  url: absolute(`argomenti/${topic.id}/`),
+  inLanguage: 'it',
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: entries.length,
+    itemListElement: entries.map((entry, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: entry.title,
+      url: absolute(entry.path),
+    })),
+  },
+};
+---
+
+<Base title={`${topic.title} — Argomenti FLOW`} description={description}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schema).replace(/</g, '\u003c')}
+  ></script>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Percorso">
+      <a href={href('esplora/')}>Esplora</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{topic.title}</span>
+    </nav>
+    <header class="page-heading">
+      <p class="eyebrow">LE CONNESSIONI DEL CERCATORE</p>
+      <h1>{topic.title}</h1>
+      <p class="dek">
+        {topic.count}{' '}
+        {topic.count === 1 ? 'lettura collegata' : 'letture collegate'}. Un
+        percorso attraverso le pagine già pubblicate.
+      </p>
+    </header>
+    {topic.articles.length > 0 && (
+      <section
+        class="page-body"
+        aria-label={`Articoli su ${topic.title.toLocaleLowerCase('it')}`}
+      >
+        <div class="stories-grid">
+          {topic.articles.map((entry, index) => (
+            <StoryCard entry={entry} index={index} />
+          ))}
+        </div>
+      </section>
+    )}
+    {topic.knowledge.length > 0 && (
+      <section class="page-body">
+        <h2>Nell’atlante</h2>
+        <ul class="knowledge-list">
+          {topic.knowledge.map((entry) => (
+            <li>
+              <h3>
+                <a
+                  href={href(`atlante/${entry.collection}/${entry.data.slug}/`)}
+                >
+                  {entry.data.title}
+                </a>
+              </h3>
+              <p>{entry.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+    <div class="page-body">
+      <a class="text-link" href={href('esplora/#argomenti')}>
+        Esplora gli altri argomenti ↗
+      </a>
+    </div>
+  </div>
+</Base>

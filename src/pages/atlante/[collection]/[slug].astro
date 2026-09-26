@@ -2,6 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import { knowledgeEntries } from '../../../lib/knowledge';
 import { render } from 'astro:content';
+import TopicLinks from '../../../components/knowledge/TopicLinks.astro';
 export async function getStaticPaths() {
   return (await knowledgeEntries()).map((entry) => ({
     params: { collection: entry.collection, slug: entry.data.slug },
@@ -24,6 +25,7 @@ const { Content } = await render(entry);
     </header>
     <div class="prose page-body">
       <Content />
+      <TopicLinks topics={entry.data.topics} />
       <p>
         {entry.data.scientificNames.map((name) => (
           <i lang="la">{name} </i>

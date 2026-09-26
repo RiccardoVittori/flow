@@ -6,6 +6,7 @@ import { Picture } from 'astro:assets';
 import { href, absolute } from '../../lib/urls';
 import StoryCard from '../../components/editorial/StoryCard.astro';
 import { relatedKnowledge } from '../../lib/knowledge';
+import TopicLinks from '../../components/knowledge/TopicLinks.astro';
 export async function getStaticPaths() {
   return (await articles()).map((entry) => ({
     params: { slug: entry.data.slug },
@@ -155,6 +156,7 @@ const schema = [
             <span>{tag}</span>
           ))}
         </div>
+        <TopicLinks topics={entry.data.topics} />
         <div class="author-note">
           <strong>{entry.data.author}</strong>
           <p>Autore del progetto Il Cercatore e ideatore di FLOW.</p>

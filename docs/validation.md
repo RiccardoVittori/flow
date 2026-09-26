@@ -1,5 +1,13 @@
 # Verifica iniziale FLOW
 
+## Aggiornamento: percorsi tematici, 26 settembre 2026
+
+Aggiunti indici statici per gli argomenti con contenuti pubblicati, conteggi da collection e navigazione dagli articoli. I temi ancora vuoti sono raccolti in un elenco espandibile senza collegamenti a ricerche prive di risultati. Nessun nuovo articolo o dato scientifico in questo aggiornamento.
+
+Typecheck: 0 errori/warning/hint; lint e build PASS. Output: 25 pagine HTML, 618 link/asset/ancore interne validati. Browser: 12/12 test PASS in modalità CI; audit axe esteso anche al percorso Ricerca sui cinque viewport, navigazione avanti/indietro tra tema e articolo, conteggi, assenza di pagine tematiche vuote e uso senza JavaScript. I risultati Lighthouse della release iniziale riportati sotto non sono stati rimisurati per questa modifica.
+
+---
+
 Data: 25 settembre 2026. Ambiente locale Windows, Node 24.21.0, pnpm 12.6.0, Chromium Playwright 153. Report grezzi e screenshot in `artifacts/` (ignorati da Git).
 
 ## Quality gate eseguiti

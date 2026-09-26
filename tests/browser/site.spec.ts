@@ -6,6 +6,7 @@ const paths = [
   '/flow/taccuino/il-cercatore-da-dove-comincia-il-cammino/',
   '/flow/esplora/',
   '/flow/cerca/',
+  '/flow/argomenti/ricerca/',
 ];
 for (const width of [360, 390, 768, 1280, 1440]) {
   test(`Layout e accessibilità a ${width}px`, async ({ page }) => {
@@ -83,6 +84,54 @@ test('Contenuti accessibili senza JavaScript', async ({ browser }) => {
   ).toBeVisible();
   await context.close();
 });
+test('Percorsi tematici: conteggi, articoli e ritorno al tema', async ({
+  page,
+}) => {
+  await page.goto('/flow/esplora/');
+  await page
+    .locator('#argomenti')
+    .getByRole('link', { name: /Ricerca/ })
+    .click();
+  await expect(page).toHaveURL(/\/argomenti\/ricerca\/$/);
+  const cards = page.locator('.story-card');
+  const count = await cards.count();
+  expect(count).toBeGreaterThan(0);
+  await expect(page.locator('.dek').first()).toContainText(
+    `${count} letture collegate`,
+  );
+  await cards.first().locator('h3 a').click();
+  await page
+    .getByRole('navigation', { name: 'Percorsi per argomento' })
+    .getByRole('link', { name: /Ricerca/ })
+    .click();
+  await expect(page).toHaveURL(/\/argomenti\/ricerca\/$/);
+});
+
+test('Temi futuri senza collegamenti vuoti', async ({ page }) => {
+  await page.goto('/flow/esplora/');
+  await page.locator('.future-topics summary').click();
+  await expect(page.locator('.future-topics')).toContainText('Suolo');
+  await expect(page.locator('.future-topics a')).toHaveCount(0);
+  const response = await page.goto('/flow/argomenti/suolo/');
+  expect(response?.status()).toBe(404);
+});
+
+test('Percorsi tematici senza JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  try {
+    const page = await context.newPage();
+    await page.goto('http://127.0.0.1:4321/flow/esplora/');
+    await page
+      .locator('#argomenti')
+      .getByRole('link', { name: /Habitat/ })
+      .click();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Habitat');
+    await expect(page.locator('.story-card').first()).toBeVisible();
+  } finally {
+    await context.close();
+  }
+});
+
 test('404, riduzione movimento e metadati', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/flow/404.html');

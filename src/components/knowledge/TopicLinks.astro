@@ -1,0 +1,21 @@
+---
+import { topicLabel } from '../../lib/topics';
+import { href } from '../../lib/urls';
+interface Props {
+  topics: string[];
+}
+const { topics } = Astro.props;
+---
+
+{topics.length > 0 && (
+  <nav class="article-topics" aria-label="Percorsi per argomento">
+    <p class="eyebrow">CONTINUA PER ARGOMENTO</p>
+    <div class="topic-list">
+      {topics.map((topic) => (
+        <a href={href(`argomenti/${topic}/`)}>
+          {topicLabel(topic)} <span aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  </nav>
+)}
