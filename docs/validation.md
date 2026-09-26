@@ -31,4 +31,8 @@ Etichetta accessibile all’icona ricerca mobile; canonical della 404; font WOFF
 
 ## Deploy
 
-Workflow GitHub Pages incluso; installazione, typecheck, lint, audit, build, link e test bloccano la pubblicazione in caso di errore. Stato del deploy effettivo registrato dopo l’esecuzione, non dedotto dalla sola presenza del workflow.
+Pubblicazione completata il 26 settembre 2026: [FLOW online](https://riccardovittori.github.io/flow/). [Workflow 36221745339](https://github.com/RiccardoVittori/flow/actions/runs/36221745339): build e deploy SUCCESS, commit applicativo `483ce93`. Installazione, typecheck, lint, audit, build, link e tutti i 9 test browser superati sul runner Linux.
+
+Il primo tentativo si era bloccato dopo i test nella chiusura del server avviato tramite pnpm. Corretto usando un server statico Node diretto, shutdown esplicito e timeout dei job. Suite rieseguita anche localmente con CI=true: 9/9 PASS e terminazione regolare.
+
+Verifica pubblica del 26 settembre 2026, ore 05:48 UTC: homepage, articolo, esplora, ricerca, RSS, sitemap e robots HTTP 200; URL inesistente HTTP 404 con pagina personalizzata. Ricerca «tartufi» e apertura del risultato riuscite. Axe mobile 390 px sulle quattro pagine HTML: 0 violazioni selezionate; nessun overflow o errore JavaScript. Evidenza locale: `artifacts/live-verification.json` e `artifacts/live-mobile.png`. I punteggi Lighthouse sopra restano misure locali, non nuove misure sul sito pubblico.
