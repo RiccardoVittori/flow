@@ -1,9 +1,11 @@
 ---
+import { priceSchema } from '../../schemas/commerce';
 interface Props {
   amount: number;
   currency?: string;
 }
 const { amount, currency = 'EUR' } = Astro.props;
+priceSchema.parse({ amount, currency });
 ---
 
 <span>

@@ -22,3 +22,20 @@
   src: url('@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2')
     format('woff2');
 }
+/* Fallback metrics sampled against the local fonts in Chromium on Windows. */
+@font-face {
+  font-family: 'Flow Serif Fallback';
+  src: local('Georgia');
+  size-adjust: 107.94%;
+  ascent-override: 96.35%;
+  descent-override: 31.5%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Flow Sans Fallback';
+  src: local('Arial');
+  size-adjust: 101.91%;
+  ascent-override: 104.99%;
+  descent-override: 29.44%;
+  line-gap-override: 0%;
+}

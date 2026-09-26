@@ -1,50 +1,224 @@
 ---
 import Base from '../layouts/Base.astro';
+import FlowLoop from '../components/editorial/FlowLoop.astro';
+import { href } from '../lib/urls';
 ---
 
 <Base
   title="Il manifesto — FLOW"
-  description="Natura, cultura e pratica: la direzione di FLOW e il suo metodo editoriale."
+  description="Esplorare, conoscere, condividere e restituire: la visione di FLOW, il ciclo delle risorse e un metodo per distinguere intenzioni e risultati."
 >
-  <div class="wrap">
+  <article class="wrap" data-pagefind-body>
     <header class="page-heading">
-      <p class="eyebrow">IL NOSTRO MANIFESTO</p>
+      <p class="eyebrow">IL NOSTRO MANIFESTO · VISIONE</p>
       <h1>
-        Restare curiosi.
+        Conoscere il mondo.
         <br />
-        <em>Imparare a connettere.</em>
+        <em>Sentirsene parte.</em>
       </h1>
       <p class="dek">
-        FLOW è un progetto di Riccardo Vittori. Uno spazio editoriale per
-        esplorare le relazioni tra natura, conoscenza e pratica.
+        FLOW è un progetto di Riccardo Vittori. Parte dalla natura e dalla
+        conoscenza, per coltivare esperienze, relazioni e possibilità di
+        restituzione.
       </p>
+      <a class="text-link" href={href('chi-sono/')}>
+        Chi c’è dietro FLOW ↗
+      </a>
     </header>
-    <div class="prose page-body" data-pagefind-body>
-      <h2>Cominciare dal bosco</h2>
-      <p>
-        Il primo verticale è Il Cercatore — Tartufi, natura e arte di leggere il
-        bosco. Da qui il progetto potrà aprirsi a foraging, arti marziali,
-        pratiche corporee, viaggi, libri ed esperienze.
-      </p>
-      <h2>Un metodo leggibile</h2>
-      <p>
-        Distinguiamo ciò che osserviamo, ciò che ipotizziamo e ciò che possiamo
-        sostenere con fonti. Le prime pagine raccontano intenzioni e metodo. Gli
-        approfondimenti scientifici richiederanno una verifica specifica: la
-        qualità grafica non sostituisce l’evidenza.
-      </p>
-      <h2>Meno rumore, più attenzione</h2>
-      <p>
-        Testi leggibili, immagini che aiutano a guardare, percorsi che lasciano
-        spazio alla scoperta. Senza notifiche, pubblicità o classifiche della
-        curiosità.
-      </p>
-      <h2>Una mappa aperta</h2>
-      <p>
-        Non tutte le direzioni hanno già contenuti. Dichiarare ciò che è ancora
-        in lavorazione fa parte del progetto, così come correggere e aggiornare
-        le pagine quando sarà necessario.
-      </p>
+    <div class="manifesto-intro">
+      <p class="eyebrow">IL PUNTO DI PARTENZA</p>
+      <div class="prose">
+        <h2>Un bosco. Molte direzioni.</h2>
+        <p>
+          Oggi ci sono le prime letture e un percorso:{' '}
+          <a href={href('il-cercatore/')}>
+            Il Cercatore — Tartufi, natura e arte di leggere il bosco
+          </a>
+          . È l’inizio di un ecosistema che potrà accogliere botanica, foraging,
+          territori, culture, arti marziali e pratiche corporee, libri e
+          occasioni di apprendimento.
+        </p>
+        <p>
+          Non vogliamo accumulare esperienze da consumare. Vogliamo imparare a
+          entrare nei luoghi, ascoltare chi li abita e fare spazio a uno scambio
+          reciproco.
+        </p>
+      </div>
     </div>
-  </div>
+    <div class="section loop-section">
+      <FlowLoop expanded />
+    </div>
+    <section class="manifesto-intro section">
+      <p class="eyebrow">ECONOMIA E RECIPROCITÀ</p>
+      <div class="prose">
+        <h2>Le risorse fanno parte del percorso.</h2>
+        <p>
+          Un progetto duraturo ha bisogno di sostenibilità economica. Libri,
+          corsi, esperienze, bootcamp e retreat potranno generare reddito e
+          sostenere il lavoro. Una parte delle risorse potrà essere reinvestita
+          in accesso alla conoscenza, ricerca e iniziative territoriali.
+        </p>
+        <p>
+          Le scelte andranno dichiarate progetto per progetto: da dove arrivano
+          i fondi, come vengono impiegati, quali attività consentono e quali
+          risultati si possono documentare. Non è fissata una percentuale
+          universale di restituzione.
+        </p>
+        <h3>Entrare, imparare, scambiare, restituire.</h3>
+        <p>
+          Un’esperienza futura dovrà chiarire da chi si impara, che cosa si
+          scambia, come si contribuisce e come la documentazione torna alle
+          persone coinvolte. Il contributo nasce dal confronto con il
+          territorio, rispettando priorità, conoscenze e consenso di chi lo
+          abita.
+        </p>
+        <p>
+          Eventuali campagne potranno favorire la partecipazione, sostenere un
+          progetto locale, conservare conoscenze culturali o finanziare ricerca.
+          Obiettivi, destinazione delle risorse e limiti dovranno essere
+          leggibili prima della raccolta.
+        </p>
+      </div>
+    </section>
+    <section class="section intentions" aria-labelledby="benefici">
+      <p class="eyebrow">BENEFICI DESIDERATI · VISIONE</p>
+      <h2 id="benefici">Persone. Flora. Fauna.</h2>
+      <div class="intention-grid">
+        <div>
+          <span class="eyebrow">01 / PERSONE</span>
+          <h3>Possibilità di imparare.</h3>
+          <p>
+            Vorremmo ampliare l’accesso alla conoscenza, valorizzare i saperi
+            locali e creare occasioni di partecipazione e scambio.
+          </p>
+        </div>
+        <div>
+          <span class="eyebrow">02 / FLORA</span>
+          <h3>Cura delle relazioni.</h3>
+          <p>
+            Vorremmo sostenere conoscenza e cura degli habitat vegetali, con
+            iniziative appropriate ai luoghi e competenze adeguate.
+          </p>
+        </div>
+        <div>
+          <span class="eyebrow">03 / FAUNA</span>
+          <h3>Spazio agli altri viventi.</h3>
+          <p>
+            Vorremmo contribuire a una presenza più attenta agli animali e ai
+            loro habitat, valutando anche gli effetti indesiderati delle nostre
+            attività.
+          </p>
+        </div>
+      </div>
+      <p class="muted">
+        Sono intenzioni. Non rappresentano benefici già misurati o iniziative
+        già realizzate.
+      </p>
+    </section>
+    <section class="section transparency" aria-labelledby="trasparenza">
+      <p class="eyebrow">UN METODO LEGGIBILE</p>
+      <h2 id="trasparenza">Dalle intenzioni alle evidenze.</h2>
+      <dl>
+        <div>
+          <dt>Visione</dt>
+          <dd>
+            La direzione e i benefici desiderati. Non è una promessa di
+            risultato.
+          </dd>
+        </div>
+        <div>
+          <dt>Progetto</dt>
+          <dd>
+            Un obiettivo e un percorso definiti, ancora da realizzare o
+            sviluppare.
+          </dd>
+        </div>
+        <div>
+          <dt>Azione</dt>
+          <dd>
+            Un’attività effettivamente avvenuta, con data, contesto e
+            documentazione.
+          </dd>
+        </div>
+        <div>
+          <dt>Impatto</dt>
+          <dd>
+            Un cambiamento osservato e documentato, con metodo, indicatori,
+            punto di partenza e limiti. Partecipanti e fondi raccolti, da soli,
+            non lo dimostrano.
+          </dd>
+        </div>
+      </dl>
+      <div class="prose">
+        <p>
+          Nel lavoro editoriale distinguiamo anche evidenza, esperienza e
+          ipotesi. Una fonte va resa riconoscibile; una correzione va accolta.
+          Né una verifica automatica né la qualità grafica sostituiscono la
+          verifica scientifica.
+        </p>
+        <p>
+          Oggi il sito presenta una visione e un progetto editoriale. Non
+          pubblica rendicontazioni di impatto, campagne attive o esperienze
+          prenotabili.
+        </p>
+        <a class="text-link" href={href('il-cercatore/')}>
+          Comincia da ciò che puoi leggere oggi ↗
+        </a>
+      </div>
+    </section>
+  </article>
 </Base>
+<style>
+  .manifesto-intro {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+  }
+  .loop-section,
+  .intentions,
+  .transparency {
+    border-top: 1px solid var(--line);
+  }
+  .loop-section {
+    margin-top: var(--space);
+  }
+  .intention-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-block: 3rem;
+  }
+  .intention-grid h3 {
+    margin-block: 1rem;
+  }
+  .intentions h2,
+  .transparency h2 {
+    margin-top: 1rem;
+  }
+  dl {
+    margin: 3rem 0;
+  }
+  dl > div {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+    border-top: 1px solid var(--line);
+    padding-block: 1.5rem;
+  }
+  dt {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+  }
+  dd {
+    margin: 0;
+    max-width: 70ch;
+  }
+  @media (max-width: 760px) {
+    .manifesto-intro,
+    .intention-grid,
+    dl > div {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

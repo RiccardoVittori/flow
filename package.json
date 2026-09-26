@@ -8,10 +8,11 @@
     "typecheck": "astro check",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "playwright test",
+    "test": "node --test tests/unit/*.test.ts && playwright test",
+    "test:unit": "node --test tests/unit/*.test.ts",
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview --host 127.0.0.1",
-    "qa:links": "node scripts/check-build.mjs"
+    "qa:links": "node scripts/check-build.mjs && node scripts/check-private.mjs"
   },
   "engines": {
     "node": ">=24.0.0"

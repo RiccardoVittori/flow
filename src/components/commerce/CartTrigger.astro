@@ -1,10 +1,10 @@
 ---
+import { checkoutUrl as checkoutUrlSchema } from '../../schemas/commerce';
 interface Props {
   checkoutUrl?: string;
 }
 const { checkoutUrl } = Astro.props;
-if (checkoutUrl && !checkoutUrl.startsWith('https://'))
-  throw new Error('Checkout richiede HTTPS');
+if (checkoutUrl) checkoutUrlSchema.parse(checkoutUrl);
 ---
 
 {checkoutUrl && (

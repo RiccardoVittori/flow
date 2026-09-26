@@ -1,13 +1,9 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-export const visible = (entry: {
-  data: { draft: boolean; test: boolean; publishedDate?: Date };
-}) =>
-  !entry.data.draft &&
-  !entry.data.test &&
-  (!entry.data.publishedDate || entry.data.publishedDate <= new Date());
+import { visible } from './publication';
+export { visible } from './publication';
 export async function articles() {
   const entries = (await getCollection('articles'))
-    .filter(visible)
+    .filter((entry) => visible(entry))
     .sort(
       (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
     );

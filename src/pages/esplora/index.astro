@@ -6,7 +6,7 @@ import { topicIndex } from '../../lib/topics';
 import { articles } from '../../lib/content';
 const [index, posts] = await Promise.all([topicIndex(), articles()]);
 const publishedTopics = index.filter((topic) => topic.count > 0);
-const futureTopics = index.filter((topic) => topic.count === 0);
+
 const counts = new Map(
   areas.map((area) => [
     area.id,
@@ -17,7 +17,7 @@ const counts = new Map(
 
 <Base
   title="Esplora gli orizzonti — FLOW"
-  description="Tartufi e bosco: i primi percorsi di FLOW. Scopri la mappa dei temi e gli orizzonti futuri."
+  description="Tartufi e bosco: i primi percorsi di FLOW. Segui le letture e la mappa degli argomenti pubblicati."
 >
   <div class="wrap">
     <header class="page-heading">
@@ -32,19 +32,21 @@ const counts = new Map(
       </p>
     </header>
     <div class="area-grid page-body">
-      {areas.map((area, i) => (
-        <a class="area-item" href={href(`esplora/${area.id}/`)}>
-          <span class="eyebrow">
-            0{i + 1} ·{' '}
-            {counts.get(area.id)
-              ? `${counts.get(area.id)} ${counts.get(area.id) === 1 ? 'lettura' : 'letture'}`
-              : 'In progetto'}
-          </span>
-          <h3>{area.title}</h3>
-          <p>{area.subtitle}</p>
-          <span class="area-bottom">Scopri la direzione ↗</span>
-        </a>
-      ))}
+      {areas
+        .filter((area) => counts.get(area.id))
+        .map((area, i) => (
+          <a class="area-item" href={href(`esplora/${area.id}/`)}>
+            <span class="eyebrow">
+              0{i + 1} ·{' '}
+              {counts.get(area.id)
+                ? `${counts.get(area.id)} ${counts.get(area.id) === 1 ? 'lettura' : 'letture'}`
+                : 'In progetto'}
+            </span>
+            <h3>{area.title}</h3>
+            <p>{area.subtitle}</p>
+            <span class="area-bottom">Scopri la direzione ↗</span>
+          </a>
+        ))}
     </div>
     <section class="page-body" id="argomenti">
       <h2>Le domande del Cercatore</h2>
@@ -63,20 +65,6 @@ const counts = new Map(
           </a>
         ))}
       </div>
-      {futureTopics.length > 0 && (
-        <details class="future-topics">
-          <summary>Gli argomenti ancora da sviluppare</summary>
-          <p>
-            Fanno parte della mappa editoriale, ma non hanno ancora letture
-            pubblicate.
-          </p>
-          <ul>
-            {futureTopics.map((topic) => (
-              <li>{topic.title}</li>
-            ))}
-          </ul>
-        </details>
-      )}
     </section>
   </div>
 </Base>

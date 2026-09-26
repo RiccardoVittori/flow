@@ -1,11 +1,11 @@
 ---
+import { ctaUrl } from '../../schemas/commerce';
 interface Props {
   url: string;
   label: string;
 }
 const { url, label } = Astro.props;
-if (!url.startsWith('/') && !url.startsWith('https://'))
-  throw new Error('URL CTA non sicuro');
+ctaUrl.parse(url);
 ---
 
 <a class="button" href={url}>

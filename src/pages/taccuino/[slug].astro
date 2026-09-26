@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import PathNavigation from '../../components/editorial/PathNavigation.astro';
 import { articles, related } from '../../lib/content';
 import { render } from 'astro:content';
 import { Picture } from 'astro:assets';
@@ -138,6 +139,7 @@ const schema = [
       </aside>
       <div class="prose">
         <Content />
+        <PathNavigation articleId={entry.id} />
         {entry.data.sources.length > 0 && (
           <section>
             <h2>Fonti e riferimenti</h2>
@@ -159,6 +161,9 @@ const schema = [
         <TopicLinks topics={entry.data.topics} />
         <div class="author-note">
           <strong>{entry.data.author}</strong>
+          <p>
+            <a href={href('chi-sono/')}>Il mio percorso</a>
+          </p>
           <p>Autore del progetto Il Cercatore e ideatore di FLOW.</p>
           <a href={href('manifesto/')}>Il metodo editoriale</a>
         </div>

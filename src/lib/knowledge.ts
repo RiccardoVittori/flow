@@ -12,7 +12,7 @@ export async function knowledgeEntries() {
   return (
     await Promise.all(
       knowledgeCollections.map(async (collection) =>
-        (await getCollection(collection)).filter(visible),
+        (await getCollection(collection)).filter((entry) => visible(entry)),
       ),
     )
   ).flat();

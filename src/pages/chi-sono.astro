@@ -1,0 +1,255 @@
+---
+import Base from '../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import forest from '../assets/forest.jpg';
+import { href, absolute } from '../lib/urls';
+const journey = [
+  {
+    period: '2015–2020',
+    context: 'SISAS S.p.A.',
+    title: 'Partire dal lavoro concreto.',
+    text: 'Dalla produzione alla logistica, fino alle vendite e alla promozione dei prodotti. Un percorso interno che mi ha formato nella gestione operativa, nella responsabilità e nel miglioramento dei processi.',
+  },
+  {
+    period: '2021–2023',
+    context: 'MENTORING RESOURCES',
+    title: 'Imparare, poi affiancare.',
+    text: 'Formazione interna, tutoraggio commerciale e vendita di corsi. Dopo il percorso nell’accademia interna ho svolto attività di trainer e coach nell’organizzazione, lavorando con le persone e con il gruppo.',
+  },
+  {
+    period: '2024',
+    context: 'GABETTI',
+    title: 'Ascoltare una richiesta.',
+    text: 'Come consulente immobiliare mi sono occupato di clienti, vendite e locazioni, ricerca e promozione degli immobili. Un’esperienza che ha sviluppato le mie competenze comunicative e organizzative.',
+  },
+];
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'Riccardo Vittori — Chi sono',
+  url: absolute('chi-sono/'),
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Riccardo Vittori',
+    url: absolute('chi-sono/'),
+  },
+};
+---
+
+<Base
+  title="Riccardo Vittori — Chi sono | FLOW"
+  description="Il percorso di Riccardo Vittori: lavoro operativo, comunicazione, arti marziali e interesse per la natura. Le esperienze da cui prende forma FLOW."
+>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schema).replace(/</g, '\u003c')}
+  ></script>
+  <article data-pagefind-body>
+    <header class="wrap page-heading about-heading">
+      <p class="eyebrow">CHI SONO · DIETRO IL PROGETTO</p>
+      <h1>Riccardo Vittori</h1>
+      <p class="dek">
+        Imparare facendo.
+        <br />
+        <em>Trovare un filo tra esperienze diverse.</em>
+      </p>
+    </header>
+    <figure class="about-landscape wrap">
+      <Picture
+        src={forest}
+        alt="Luce diffusa tra i tronchi e il sottobosco di una foresta"
+        widths={[640, 960, 1440]}
+        sizes="92vw"
+        formats={['avif', 'webp']}
+        loading="eager"
+      />
+      <figcaption>
+        Il bosco come orizzonte del progetto. Fotografia ambientale, non un
+        luogo del mio percorso personale. <a href={href('crediti/')}>Crediti</a>
+      </figcaption>
+    </figure>
+    <div class="wrap">
+      <section class="about-section section">
+        <p class="eyebrow">IL PERCORSO</p>
+        <div class="prose">
+          <h2>Le cose che porto con me.</h2>
+          <p>
+            Mi riconosco nella gentilezza, nella semplicità e nella voglia di
+            imparare. Il movimento, la pratica delle arti marziali e il contatto
+            con la natura sono parte del mio percorso personale. Il viaggio è
+            anche questo: un’occasione per crescere e incontrare qualcosa che
+            ancora non conosco.
+          </p>
+          <p>
+            Ho una formazione al Liceo Scientifico Montessori. In seguito ho
+            frequentato corsi di comunicazione efficace e PNL, public speaking,
+            vendita e formazione manageriale e commerciale. Sono percorsi
+            complementari: strumenti che si sono affiancati all’esperienza del
+            lavoro.
+          </p>
+        </div>
+      </section>
+      <section class="section journey" aria-labelledby="imparare">
+        <p class="eyebrow">IMPARARE FACENDO</p>
+        <h2 id="imparare">
+          Tre tappe, <em>competenze diverse.</em>
+        </h2>
+        <ol>
+          {journey.map((step) => (
+            <li>
+              <div class="journey-mark">
+                <span>{step.period}</span>
+                <p class="eyebrow">{step.context}</p>
+              </div>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <section class="about-section section">
+        <p class="eyebrow">MOVIMENTO E NATURA</p>
+        <div class="prose">
+          <h2>Praticare. Osservare. Continuare a studiare.</h2>
+          <p>
+            Coltivo le arti marziali come un percorso di disciplina, movimento e
+            ricerca personale. Mi interessa la pratica: il tempo dedicato a un
+            gesto, la presenza, la disponibilità a imparare.
+          </p>
+          <p>
+            Con la natura il rapporto passa dal desiderio di stare a contatto
+            con i luoghi e dallo studio personale di flora e fauna. È un
+            interesse che voglio approfondire con attenzione, distinguendo ciò
+            che osservo da ciò che devo ancora comprendere.
+          </p>
+          <p>
+            Da qui nasce anche la direzione del{' '}
+            <a href={href('il-cercatore/')}>Cercatore</a>: partire dai tartufi e
+            dal bosco per imparare a leggere le relazioni. Le passioni aprono
+            domande; per sostenere una spiegazione servono fonti e verifiche.
+          </p>
+        </div>
+      </section>
+      <section class="about-section section about-flow">
+        <p class="eyebrow">ESPERIENZE, PERSONE, FLOW</p>
+        <div class="prose">
+          <h2>
+            Quando i percorsi <em>si incontrano.</em>
+          </h2>
+          <p>
+            Dal 2017 ho portato avanti con FLOW la progettazione e produzione di
+            eventi ed esperienze immersive legate ad arte, natura e benessere. È
+            un filo che si affianca alle esperienze professionali e al lavoro
+            sulla comunicazione.
+          </p>
+          <p>
+            Ascoltare, condividere conoscenze, organizzare un’esperienza: oggi
+            voglio riunire queste direzioni in un progetto più leggibile.
+            Natura, movimento, apprendimento e persone sono i punti da cui
+            partire.
+          </p>
+          <p>
+            La <a href={href('manifesto/')}>visione di FLOW</a> aggiunge una
+            domanda: come possono le esperienze e le risorse che generano
+            tornare utili ai luoghi e alle persone coinvolte? La restituzione è
+            una direzione da costruire e documentare, insieme ai territori.
+          </p>
+          <h3>Oggi, una prima pagina.</h3>
+          <p>
+            Il sito comincia concretamente da Il Cercatore e dalle prime letture
+            del taccuino. Voglio far crescere i percorsi a partire da contenuti,
+            relazioni ed esperienze reali, rendendo visibili anche i limiti e
+            ciò che resta da imparare.
+          </p>
+          <a class="button" href={href('il-cercatore/')}>
+            Scopri Il Cercatore ↗
+          </a>
+          <p>
+            <a href={href('taccuino/')}>Leggi il Taccuino</a> ·{' '}
+            <a href={href('esplora/')}>Esplora FLOW</a>
+          </p>
+        </div>
+      </section>
+    </div>
+  </article>
+</Base>
+<style>
+  .about-heading {
+    max-width: var(--max);
+  }
+  .about-landscape img {
+    width: 100%;
+    aspect-ratio: 2.8;
+    object-fit: cover;
+  }
+  figcaption {
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 0.8rem;
+    max-width: 85ch;
+  }
+  figcaption a {
+    text-decoration: underline;
+  }
+  .about-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .journey {
+    border-bottom: 1px solid var(--line);
+  }
+  .journey h2 {
+    margin-top: 1rem;
+  }
+  .journey ol {
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0 0;
+  }
+  .journey li {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    padding: 2rem 0 2rem 2rem;
+    border-left: 1px solid var(--earth);
+    position: relative;
+  }
+  .journey li::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: var(--earth);
+    border-radius: 50%;
+    position: absolute;
+    left: -5px;
+    top: 2.7rem;
+  }
+  .journey-mark > span {
+    font: 1.7rem var(--serif);
+  }
+  .journey-mark p {
+    margin-top: 0.75rem;
+  }
+  .journey li > div > p:not(.eyebrow) {
+    max-width: 65ch;
+    margin-top: 1rem;
+  }
+  .about-flow {
+    border: 0;
+  }
+  @media (max-width: 760px) {
+    .about-section,
+    .journey li {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .about-landscape img {
+      aspect-ratio: 1.35;
+    }
+  }
+</style>

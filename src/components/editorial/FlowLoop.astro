@@ -1,0 +1,233 @@
+---
+import { flowLoop } from '../../config/flow-loop';
+import { href } from '../../lib/urls';
+interface Props {
+  expanded?: boolean;
+}
+const { expanded = false } = Astro.props;
+const points = [
+  [250, 58],
+  [377, 94],
+  [445, 209],
+  [417, 354],
+  [304, 433],
+  [163, 422],
+  [69, 321],
+  [66, 187],
+  [139, 90],
+];
+---
+
+<section
+  class:list={['flow-loop', { expanded }]}
+  aria-labelledby="flow-loop-title"
+>
+  <div class="loop-heading">
+    <p class="eyebrow">LA VISIONE · FLOW LOOP</p>
+    <h2 id="flow-loop-title">
+      Un sentiero
+      <br />
+      che <em>ritorna.</em>
+    </h2>
+    <p>
+      Esplorare apre domande. Condividere crea relazioni. Le risorse che ne
+      nascono possono tornare ai luoghi e aprire nuove possibilità.
+    </p>
+    <p class="loop-note">
+      È la direzione che vogliamo costruire. Oggi FLOW comincia dalle sue prime
+      letture.
+    </p>
+    {!expanded && (
+      <a class="text-link" href={href('manifesto/#flow-loop-title')}>
+        Segui il ciclo, passo dopo passo ↗
+      </a>
+    )}
+  </div>
+  <figure class="loop-map">
+    <svg
+      viewBox="0 0 510 490"
+      role="img"
+      aria-labelledby="loop-svg-title loop-svg-desc"
+    >
+      <title id="loop-svg-title">Il sentiero che ritorna</title>
+      <desc id="loop-svg-desc">
+        Nove tappe su un percorso circolare irregolare, dall’esplorazione a
+        nuove possibilità. L’elenco seguente descrive il ciclo completo. È una
+        visione, non un resoconto di risultati.
+      </desc>
+      <g fill="none" stroke="currentColor">
+        <path
+          class="contour"
+          d="M254 25C361 23 472 114 473 219S416 456 294 465 52 417 34 310 79 48 254 25Z"
+        />
+        <path
+          class="contour"
+          d="M257 110C343 99 400 161 391 252S337 374 252 375 117 321 118 240 169 115 257 110Z"
+        />
+        <path
+          class="trail"
+          d="M250 58C304 49 350 65 377 94S445 159 445 209 448 309 417 354 355 425 304 433 207 451 163 422 84 375 69 321 48 239 66 187 91 112 139 90 213 67 250 58Z"
+        />
+        <path
+          class="branch"
+          d="M304 433Q301 393 274 365M139 90Q169 137 158 168M445 209Q405 214 382 198"
+        />
+      </g>
+      <text x="255" y="235" text-anchor="middle" class="map-word">
+        FLOW
+      </text>
+      <text x="255" y="266" text-anchor="middle" class="map-caption">
+        CONOSCERE · RESTITUIRE
+      </text>
+      {points.map(([cx, cy], index) => (
+        <g aria-hidden="true">
+          <circle cx={cx} cy={cy} r="19" />
+          <text x={cx} y={cy + 5} text-anchor="middle" class="map-number">
+            {String(index + 1).padStart(2, '0')}
+          </text>
+        </g>
+      ))}
+    </svg>
+    <figcaption>
+      Una mappa di intenzioni. Ogni ritorno porta nuove domande.
+    </figcaption>
+  </figure>
+  <ol class="loop-stops">
+    {flowLoop.map((step, index) => (
+      <li>
+        {expanded ? (
+          <details>
+            <summary>
+              <span class="step-number" aria-hidden="true">
+                0{index + 1}
+              </span>
+              {step.title}
+            </summary>
+            <p>{step.text}</p>
+          </details>
+        ) : (
+          <span>
+            <span class="step-number" aria-hidden="true">
+              0{index + 1}
+            </span>
+            {step.title}
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+</section>
+<style>
+  .flow-loop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 4rem;
+    align-items: center;
+  }
+  .loop-heading h2 {
+    margin: 1rem 0 1.5rem;
+  }
+  .loop-heading p:not(.eyebrow) {
+    max-width: 45ch;
+    margin-block: 1rem;
+  }
+  .loop-note,
+  figcaption {
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+  .loop-map svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    color: var(--earth);
+  }
+  .contour {
+    stroke: var(--line);
+    stroke-width: 1;
+  }
+  .trail {
+    stroke-width: 2;
+  }
+  .branch {
+    stroke-width: 1;
+    stroke-dasharray: 3 5;
+  }
+  circle {
+    fill: var(--paper);
+    stroke: var(--earth);
+    stroke-width: 1;
+  }
+  .map-word {
+    fill: var(--ink);
+    font: 40px var(--serif);
+    letter-spacing: 4px;
+  }
+  .map-caption {
+    fill: var(--muted);
+    font: 10px var(--sans);
+    letter-spacing: 1px;
+  }
+  .map-number {
+    fill: var(--ink);
+    font: 13px var(--sans);
+  }
+  figcaption {
+    text-align: center;
+  }
+  .loop-stops {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: none;
+  }
+  .loop-stops li {
+    border-top: 1px solid var(--line);
+    padding-block: 0.8rem;
+  }
+  .loop-stops li > span,
+  summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    font-size: 0.9375rem;
+  }
+  .step-number {
+    color: var(--earth);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+  summary {
+    cursor: pointer;
+    min-height: 44px;
+    padding-block: 0.5rem;
+  }
+  summary::after {
+    content: '+';
+    margin-left: auto;
+  }
+  details[open] summary::after {
+    content: '−';
+  }
+  details p {
+    font-size: 0.9375rem;
+    margin: 0.5rem 0 1rem;
+    max-width: 50ch;
+  }
+  @media (max-width: 760px) {
+    .flow-loop {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .loop-map {
+      max-width: 480px;
+    }
+    .loop-stops {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

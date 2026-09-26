@@ -41,3 +41,11 @@ Repository BLOG indipendente. `.env` ignorato prima dell'inizializzazione Git; i
 ## Compatibilità verificate durante implementazione
 
 Astro 7.3.5, MDX 8.0.2, Pagefind 1.5.2, pnpm 12.6.0, Node 24.21.0. TypeScript 6.0.3 perché i peer di Astro Check e typescript-eslint escludono 7. Sharp esplicito richiesto dal servizio immagini. Pagefind Default UI è ancora supportata: scelta qui per ricerca inline semplice e API di query precompilata, verificata con axe; valutata la nuova Component UI 1.5 per future interfacce modali. Nessun servizio remoto nella ricerca.
+
+# Evoluzione del 26 settembre 2026
+
+Decisioni aggiornate in [evolution-audit.md](evolution-audit.md); modelli futuri in [ecosystem.md](ecosystem.md). Nessuna nuova dipendenza. Nuova collection `paths`, sequenza validata a build-time e navigazione tra tappe; diagramma SVG con disclosure nativa nel manifesto; `/chi-sono/` come pagina editoriale con AboutPage/Person essenziali. Le aree senza articoli non producono pagine o link. Il libro resta un progetto, senza copertina simulata in homepage.
+
+Il token `active` manuale della tassonomia è stato eliminato: la pubblicabilità deriva dai record. I contratti per progetti, impatti, esperienze, campagne e partner sono validatori separati e non creano collection o servizi vuoti. Le cartelle private biografiche restano fuori da Git e dal sito. La destinazione rimane `/flow/`; sito account principale e `deploy/` fuori ambito.
+
+Le sezioni seguenti conservano le motivazioni e le verifiche della prima versione; il report di evoluzione descrive lo stato successivo.

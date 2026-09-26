@@ -1,21 +1,56 @@
 ---
 import Base from '../layouts/Base.astro';
+import { render } from 'astro:content';
 import { Picture } from 'astro:assets';
 import woods from '../assets/woods.jpg';
-import { href } from '../lib/urls';
+import { href, absolute } from '../lib/urls';
+import { readingPaths } from '../lib/paths';
+import TopicLinks from '../components/knowledge/TopicLinks.astro';
+const path = (await readingPaths()).find(
+  (path) => path.entry.data.slug === 'il-cercatore',
+);
+if (!path) throw new Error('Percorso Il Cercatore non pubblicabile');
+const { Content } = await render(path.entry);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: path.entry.data.title,
+  url: absolute('il-cercatore/'),
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: path.stops.map((stop, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: stop.article.data.title,
+      url: absolute('taccuino/' + stop.article.data.slug + '/'),
+    })),
+  },
+};
 ---
 
 <Base
-  title="Il Cercatore — Tartufi, natura e arte di leggere il bosco"
-  description="Il primo verticale di FLOW. Un progetto editoriale dedicato ai tartufi, alle relazioni del bosco e all’arte di osservare."
+  title={path.entry.data.title + ' — ' + path.entry.data.subtitle}
+  description={path.entry.data.description}
 >
-  <div class="wrap">
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schema).replace(/</g, '\\u003c')}
+  ></script>
+  <article class="wrap" data-pagefind-body>
     <header class="page-heading">
-      <p class="eyebrow">IL PRIMO CAPITOLO DI FLOW</p>
+      <p class="eyebrow">PERCORSO 01 · PROGETTO EDITORIALE</p>
       <h1>Il Cercatore</h1>
-      <p class="dek">Tartufi, natura e arte di leggere il bosco.</p>
+      <p class="dek">{path.entry.data.subtitle}</p>
+      <p class="path-meta">
+        {path.stops.length} tappe · {path.minutes} minuti di lettura ·
+        Un’introduzione al metodo
+      </p>
+      <a class="button" href="#tappe">
+        Comincia il percorso ↓
+      </a>
     </header>
-    <figure class="article-hero">
+    <figure class="path-landscape">
       <Picture
         src={woods}
         alt="Bosco di conifere riflesso in un lago, con rilievi sullo sfondo"
@@ -24,42 +59,99 @@ import { href } from '../lib/urls';
         formats={['avif', 'webp']}
         loading="eager"
       />
+      <figcaption>
+        Osservare il contesto, prima di isolare un dettaglio. ·{' '}
+        <a href={href('crediti/')}>Crediti fotografici</a>
+      </figcaption>
     </figure>
     <div class="article-layout">
-      <aside class="toc">
-        <a href="#percorso">Il percorso</a>
+      <aside class="toc" aria-label="In questa pagina">
+        <a href="#percorso">La direzione</a>
+        <a href="#tappe">Le tre tappe</a>
         <a href="#libro">Il libro</a>
       </aside>
-      <div class="prose" data-pagefind-body>
-        <h2 id="percorso">Un percorso, molte relazioni</h2>
-        <p>
-          Il tartufo è il punto di partenza di una ricerca che attraversa
-          specie, alberi, suolo, habitat e cultura. Il Cercatore vuole costruire
-          un linguaggio per raccontare queste connessioni con cura.
-        </p>
-        <p>
-          Le prime letture presentano il progetto e il metodo. L’atlante
-          scientifico sarà sviluppato con fonti, provenienza e limiti
-          dichiarati.
-        </p>
-        <a
-          class="text-link"
-          href={href('taccuino/il-cercatore-da-dove-comincia-il-cammino/')}
-        >
-          Leggi la prima pagina ↗
-        </a>
-        <h2 id="libro">Dalla ricerca al libro</h2>
-        <p>
-          Il volume è in lavorazione. La copertina mostrata nella homepage è uno
-          studio grafico: non rappresenta un’edizione già disponibile.
-        </p>
-        <p>
-          Non sono ancora annunciati data di pubblicazione, prezzo o preordini.
-        </p>
-        <a class="text-link" href={href('rss.xml')}>
-          Segui gli aggiornamenti via RSS ↗
-        </a>
+      <div class="prose">
+        <h2 id="percorso">Dal dettaglio alle relazioni</h2>
+        <Content />
+        <h2 id="tappe">Tre domande per cominciare</h2>
+        <ol class="reading-stops">
+          {path.stops.map((stop, index) => (
+            <li>
+              <span class="eyebrow">
+                TAPPA 0{index + 1} · {stop.article.data.readingTime} MIN
+              </span>
+              <h3>
+                <a href={href('taccuino/' + stop.article.data.slug + '/')}>
+                  {stop.question}
+                </a>
+              </h3>
+              <p>{stop.article.data.description}</p>
+              <a
+                class="text-link"
+                href={href('taccuino/' + stop.article.data.slug + '/')}
+              >
+                Leggi: {stop.article.data.title} ↗
+              </a>
+            </li>
+          ))}
+        </ol>
+        <TopicLinks topics={path.entry.data.topics} />
+        <section class="book-note" aria-labelledby="libro">
+          <p class="eyebrow">DALLA RICERCA ALLA PAGINA · PROGETTO</p>
+          <h2 id="libro">Anche un libro, in lavorazione.</h2>
+          <p>
+            Il Cercatore è anche un progetto editoriale di Riccardo Vittori. Il
+            volume vuole dare spazio alle relazioni tra tartufi, natura e
+            cultura del bosco. Data di uscita, prezzo e preordini non sono
+            ancora annunciati.
+          </p>
+          <a class="text-link" href={href('rss.xml')}>
+            Segui il taccuino via RSS ↗
+          </a>
+        </section>
       </div>
     </div>
-  </div>
+  </article>
 </Base>
+<style>
+  .path-meta {
+    color: var(--muted);
+    margin-block: 1.5rem;
+  }
+  .path-landscape img {
+    width: 100%;
+    aspect-ratio: 2.8;
+    object-fit: cover;
+  }
+  figcaption {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+  }
+  .reading-stops {
+    list-style: none;
+    padding: 0;
+  }
+  .reading-stops li {
+    border-top: 1px solid var(--line);
+    padding: 1.8rem 0 1.8rem 1.5rem;
+    border-left: 2px solid var(--earth);
+  }
+  .reading-stops h3 {
+    margin: 0.6rem 0;
+    font-size: clamp(24px, 3vw, 36px);
+  }
+  .reading-stops .text-link {
+    font-size: 0.9rem;
+  }
+  .book-note {
+    padding-block: 2rem;
+    border-top: 1px solid var(--line);
+    margin-top: 3rem;
+  }
+  @media (max-width: 760px) {
+    .path-landscape img {
+      aspect-ratio: 1.5;
+    }
+  }
+</style>

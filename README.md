@@ -49,3 +49,14 @@ Per dominio personalizzato, modificare site e base `/` nella configurazione (o S
 - [Risultati di verifica](docs/validation.md)
 
 Nessun backend commerce o newsletter email attivo. Feed RSS reale. Nessuna scheda scientifica dichiarata verificata. Fixtures escluse dalle route di produzione. `.env`, strumenti locali, log e screenshot esclusi da Git.
+
+# Evoluzione editoriale e Chi sono — 26 settembre 2026
+
+Homepage, [manifesto](https://riccardovittori.github.io/flow/manifesto/), percorso [Il Cercatore](https://riccardovittori.github.io/flow/il-cercatore/) e [Chi sono](https://riccardovittori.github.io/flow/chi-sono/) condividono il sistema visivo FLOW. Il percorso collega tre letture reali; aree e temi vuoti non generano voci di navigazione. La visione della restituzione resta distinta da azioni e impatti documentati.
+
+- [Audit, ricerca e decisioni](docs/evolution-audit.md)
+- [Contratti per l’ecosistema e commerce](docs/ecosystem.md)
+- [Fonti biografiche e direzione visiva](docs/about-visual-assets.md)
+- [Verifiche e limiti](docs/validation.md)
+
+`curriculum/` (anche `Curriculum/`) e `immagini-reali/` sono sorgenti **private locali** ignorate da Git. Non importarle in Astro né copiarle in `public`. `pnpm qa:links` comprende il controllo dell’indice Git e degli artefatti pubblici; `pnpm test` comprende contratti dati e browser. Il CV non è un allegato pubblico.

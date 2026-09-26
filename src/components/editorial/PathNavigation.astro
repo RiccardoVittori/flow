@@ -1,0 +1,63 @@
+---
+import { readingPaths } from '../../lib/paths';
+import { href } from '../../lib/urls';
+interface Props {
+  articleId: string;
+}
+const paths = (await readingPaths()).filter((path) =>
+  path.stops.some((stop) => stop.article.id === Astro.props.articleId),
+);
+---
+
+{paths.map((path) => {
+  const index = path.stops.findIndex(
+    (stop) => stop.article.id === Astro.props.articleId,
+  );
+  const previous = path.stops[index - 1];
+  const next = path.stops[index + 1];
+  return (
+    <nav
+      class="path-navigation"
+      aria-label={`Lettura guidata: ${path.entry.data.title}`}
+      data-pagefind-ignore
+    >
+      <p class="eyebrow">
+        Tappa {index + 1} di {path.stops.length} ·{' '}
+        <a href={href(`${path.entry.data.slug}/`)}>{path.entry.data.title}</a>
+      </p>
+      <div>
+        {previous && (
+          <a href={href(`taccuino/${previous.article.data.slug}/`)} rel="prev">
+            ← {previous.question}
+          </a>
+        )}
+        {next ? (
+          <a href={href(`taccuino/${next.article.data.slug}/`)} rel="next">
+            {next.question} →
+          </a>
+        ) : (
+          <a href={href(`${path.entry.data.slug}/`)}>
+            Torna alla mappa del percorso ↗
+          </a>
+        )}
+      </div>
+    </nav>
+  );
+})}
+<style>
+  .path-navigation {
+    border-block: 1px solid var(--line);
+    padding-block: 1.5rem;
+    margin-block: 2.5rem;
+  }
+  .path-navigation div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    margin-top: 1rem;
+  }
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+</style>

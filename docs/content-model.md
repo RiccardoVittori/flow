@@ -33,3 +33,9 @@ Importare da `src/components/editorial`: Figure (ImageMetadata, alt, caption), G
 5. Commit su main: il workflow convalida e distribuisce automaticamente.
 
 Futuro IT/EN: collection unica con locale e translationKey quando esistono traduzioni, route per lingua, hreflang solo per pagine equivalenti reali. Nessun duplicato inglese fittizio oggi.
+
+# Aggiornamento: percorsi e trasparenza
+
+`paths` contiene oggi Il Cercatore con tre tappe `reference('articles')`, domanda guida e stato `project`. `lib/paths.ts` rifiuta riferimenti a contenuti nascosti e tappe duplicate. La durata è ricavata dagli articoli. Le collection editoriali includono anche `stage` ed `evidence`; draft, TEST e date future restano esclusi. `knowledgeStatus` rimane distinto dallo stato del progetto. I contratti futuri e i limiti della verifica strutturale sono descritti in [ecosystem.md](ecosystem.md).
+
+`/chi-sono/` usa una selezione narrativa del CV privato. Non importare il PDF, recapiti, indirizzo, data di nascita o fotografie sorgente. La tracciabilità della selezione, senza dati sensibili, è in [about-visual-assets.md](about-visual-assets.md). Le cartelle private sono ignorate anche nelle varianti di maiuscole/minuscole.

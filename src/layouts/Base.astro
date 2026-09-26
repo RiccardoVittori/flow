@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/tokens.css';
 import '../styles/fonts.css';
 import { href, absolute } from '../lib/urls';
 interface Props {
@@ -79,7 +80,10 @@ const nav = [
     </a>
     <header class="header wrap">
       <a class="wordmark" href={href()} aria-label="FLOW, homepage">
-        FLOW<span class="brand-dot" aria-hidden="true">○</span>
+        FLOW
+        <span class="brand-dot" aria-hidden="true">
+          ○
+        </span>
       </a>
       <span class="brand-caption">
         A WAY OF
@@ -150,6 +154,7 @@ const nav = [
           © {new Date().getFullYear()} FLOW · Un progetto di Riccardo Vittori
         </span>
         <nav aria-label="Informazioni">
+          <a href={href('chi-sono/')}>Chi sono</a>
           <a href={href('privacy/')}>Privacy</a>
           <a href={href('crediti/')}>Crediti</a>
           <a href={href('rss.xml')}>RSS ↗</a>
