@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { Picture } from 'astro:assets';
-import forest from '../assets/forest.jpg';
+import portrait from '../assets/riccardo-vittori.jpg';
 import { href, absolute } from '../lib/urls';
 const journey = [
   {
@@ -55,18 +55,17 @@ const schema = {
         <em>Trovare un filo tra esperienze diverse.</em>
       </p>
     </header>
-    <figure class="about-landscape wrap">
+    <figure class="about-portrait wrap">
       <Picture
-        src={forest}
-        alt="Luce diffusa tra i tronchi e il sottobosco di una foresta"
-        widths={[640, 960, 1440]}
-        sizes="92vw"
+        src={portrait}
+        alt="Riccardo Vittori appoggiato a una balaustra, circondato dagli alberi"
+        widths={[320, 480, 640]}
+        sizes="(max-width: 695px) 92vw, 640px"
         formats={['avif', 'webp']}
         loading="eager"
       />
       <figcaption>
-        Il bosco come orizzonte del progetto. Fotografia ambientale, non un
-        luogo del mio percorso personale. <a href={href('crediti/')}>Crediti</a>
+        Riccardo Vittori. Fotografia dall’archivio personale.
       </figcaption>
     </figure>
     <div class="wrap">
@@ -180,10 +179,13 @@ const schema = {
   .about-heading {
     max-width: var(--max);
   }
-  .about-landscape img {
+  .about-portrait {
+    max-width: 640px;
+  }
+  .about-portrait img {
     width: 100%;
-    aspect-ratio: 2.8;
-    object-fit: cover;
+    height: auto;
+    aspect-ratio: 1;
   }
   figcaption {
     color: var(--muted);
@@ -247,9 +249,6 @@ const schema = {
     .journey li {
       grid-template-columns: 1fr;
       gap: 1.5rem;
-    }
-    .about-landscape img {
-      aspect-ratio: 1.35;
     }
   }
 </style>

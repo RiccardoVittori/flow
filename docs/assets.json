@@ -20,5 +20,15 @@
     "modifications": "Responsive resizing, format conversion and layout crop",
     "purpose": "Environmental illustration; no location or taxonomic identification claimed",
     "author": "Not independently verified; no attribution name invented"
+  },
+  {
+    "id": "riccardo-vittori",
+    "path": "src/assets/riccardo-vittori.jpg",
+    "source": "Personal archive; explicitly selected by Riccardo Vittori on 2026-09-27",
+    "license": "Use authorized by user for personal blog and CV; no general reuse license granted",
+    "sha256": "bb43c49f6a1ab41206418b7e81f5b6111befd185d6d56978752c0c18e33b7047",
+    "modifications": "Original copy; Astro responsive format conversion, full square framing",
+    "purpose": "Personal portrait on Chi sono",
+    "author": "Photographer not specified; no attribution invented"
   }
 ]
