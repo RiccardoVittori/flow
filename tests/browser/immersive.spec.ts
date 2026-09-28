@@ -78,26 +78,23 @@ test('Reduced motion keeps the complete journey without downloading GSAP', async
   expect(audit.violations).toEqual([]);
 });
 
-test('No-JS journey keeps scenes, anchors and published reading links', async ({
-  browser,
-}) => {
-  const context = await browser.newContext({
-    javaScriptEnabled: false,
-    viewport: { width: 390, height: 844 },
-  });
-  try {
-    const page = await context.newPage();
+test.describe('Static journey', () => {
+  test.use({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+  test('No-JS journey keeps scenes, anchors and published reading links', async ({
+    page,
+  }) => {
     await page.goto('http://127.0.0.1:4321' + base);
     await page.getByRole('link', { name: 'Segui il sentiero' }).click();
     await expect(page).toHaveURL(/#osserva$/);
     await expect(page.locator('[data-scene]')).toHaveCount(10);
     await expect(page.locator('.discovery-note')).toHaveCount(3);
     await expect(page.locator('.motion-toggle')).toBeHidden();
-    await page.getByRole('link', { name: 'Conosci Riccardo' }).click();
+    const about = page.getByRole('link', { name: 'Conosci Riccardo' });
+    await about.scrollIntoViewIfNeeded();
+    await about.click();
+    await expect(page).toHaveURL(new RegExp(base + 'chi-sono/$'));
     await expect(page.locator('h1')).toHaveText('Riccardo Vittori');
-  } finally {
-    await context.close();
-  }
+  });
 });
 
 test('Touch and live preference changes leave controls reachable', async ({
