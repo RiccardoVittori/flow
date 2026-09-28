@@ -1,0 +1,80 @@
+---
+interface Props {
+  side?: 'left' | 'right';
+  small?: boolean;
+}
+const { side = 'left', small = false } = Astro.props;
+const leaves = Array.from({ length: small ? 12 : 24 }, (_, i) => ({
+  x: 35 + i * 13,
+  y: 70 + i * 23,
+  angle: i % 2 ? -45 : 125,
+  scale: 0.8 + (i % 4) * 0.16,
+}));
+---
+
+<svg
+  class:list={['foliage', side, { small }]}
+  viewBox="0 0 500 700"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path
+    d="M-20 20Q145 160 320 650M60 180Q190 100 270 60M140 360Q60 410 0 500"
+    stroke="currentColor"
+    stroke-width="5"
+  />
+  {leaves.map((leaf, i) => (
+    <g
+      transform={`translate(${leaf.x} ${leaf.y}) rotate(${leaf.angle}) scale(${leaf.scale})`}
+    >
+      <path
+        d="M0 0C19-36 56-47 96-31 81-1 38 17 0 0Z"
+        fill={i % 3 === 0 ? '#426c50' : i % 3 === 1 ? '#234d3b' : '#153c30'}
+      />
+      <path
+        d="M1 0Q44-11 89-29M35-10 43-30M52-17 71-15"
+        stroke="#8ca66c"
+        stroke-opacity=".35"
+        stroke-width="1"
+      />
+    </g>
+  ))}
+</svg>
+<style>
+  .foliage {
+    position: absolute;
+    width: min(40vw, 550px);
+    height: auto;
+    color: #183f31;
+    pointer-events: none;
+  }
+  .left {
+    left: -10%;
+    bottom: -18%;
+    transform-origin: left bottom;
+  }
+  .right {
+    right: -12%;
+    top: 3%;
+    transform: rotate(180deg);
+    transform-origin: right center;
+  }
+  .small {
+    width: 250px;
+    opacity: 0.55;
+  }
+  @media (max-width: 760px) {
+    .foliage {
+      width: 210px;
+    }
+    .left {
+      bottom: -8%;
+      left: -100px;
+    }
+    .right {
+      right: -110px;
+      top: 25%;
+    }
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+interface Props {
+  sunset?: boolean;
+  id: string;
+}
+const { sunset = false, id } = Astro.props;
+---
+
+<svg
+  class:list={['landscape', { sunset }]}
+  viewBox="0 0 1440 650"
+  preserveAspectRatio="xMidYMax slice"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <linearGradient id={`${id}-sky`} x2="0" y2="1">
+      <stop stop-color={sunset ? '#d69574' : '#b6cbbb'} />
+      <stop offset="1" stop-color={sunset ? '#eed4a2' : '#e8e8c7'} />
+    </linearGradient>
+  </defs>
+  <path fill={`url(#${id}-sky)`} d="M0 0H1440V650H0Z" />
+  <circle cx="1080" cy="170" r="63" fill={sunset ? '#f8dfaa' : '#f0edca'} />
+  <g data-drift>
+    <path
+      d="M0 330 155 219 233 259 405 106 504 225 574 182 703 329 843 261 939 304 1085 124 1240 285 1320 246 1440 314V650H0Z"
+      fill={sunset ? '#b38a79' : '#85a69a'}
+    />
+    <path
+      d="m405 106-65 112 64-26 42 31-20-62 78 64Z"
+      fill={sunset ? '#dbc0a4' : '#c7d4ba'}
+      opacity=".65"
+    />
+  </g>
+  <path
+    d="M0 391Q203 302 393 378T745 373 1094 338 1440 367V650H0Z"
+    fill={sunset ? '#7c7970' : '#648779'}
+  />
+  <path
+    d="M0 455Q178 360 410 450T790 438 1114 421 1440 399V650H0Z"
+    fill={sunset ? '#515f58' : '#386354'}
+  />
+  <path
+    d="M0 550Q239 449 466 530T861 500 1202 527 1440 492V650H0Z"
+    fill={sunset ? '#293e38' : '#234d3e'}
+  />
+  <path
+    d="M670 650Q940 584 740 538T805 464 744 409"
+    stroke={sunset ? '#d4bb88' : '#bdc49a'}
+    stroke-width="10"
+    fill="none"
+  />
+  <g fill={sunset ? '#203b32' : '#163e31'}>
+    {Array.from({ length: 20 }, (_, i) => (
+      <path
+        d={`M${i * 79 - 20} 650v-110l-26 75h17l-30 35h65l-28-35h17Z`}
+        transform={`translate(0 ${(i % 4) * 12 - 25})`}
+      />
+    ))}
+  </g>
+  <g fill="none" stroke="#345548" stroke-width="2">
+    <path d="M940 90q12-11 24 0 12-10 23 0M865 142q8-8 16 0 8-8 16 0M1220 116q8-8 16 0 8-8 16 0" />
+  </g>
+</svg>
+<style>
+  .landscape {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>

@@ -1,237 +1,30 @@
 ---
 import Base from '../layouts/Base.astro';
-import { Picture } from 'astro:assets';
-import forest from '../assets/forest.jpg';
-import woods from '../assets/woods.jpg';
-import { href } from '../lib/urls';
-import { articles } from '../lib/content';
-import { areas } from '../config/taxonomy';
-import StoryCard from '../components/editorial/StoryCard.astro';
-import FlowLoop from '../components/editorial/FlowLoop.astro';
-import { readingPaths } from '../lib/paths';
-const posts = await articles();
-const path = (await readingPaths()).find(
-  (path) => path.entry.data.slug === 'il-cercatore',
-)!;
-const availableAreas = areas.filter((area) =>
-  posts.some((post) => post.data.category === area.id),
-);
+import JourneyOpening from '../components/immersive/JourneyOpening.astro';
+import JourneyController from '../components/immersive/JourneyController.astro';
+import JourneyWorld from '../components/immersive/JourneyWorld.astro';
+import '../styles/immersive.css';
 ---
 
-<Base>
-  <section class="hero" aria-labelledby="hero-title">
-    <Picture
-      class="hero-photo"
-      src={forest}
-      alt="Luce naturale tra i tronchi e il sottobosco di una foresta"
-      widths={[640, 960, 1440, 1920, 2200]}
-      sizes="100vw"
-      formats={['avif', 'webp']}
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="hero-shade"></div>
-    <div class="hero-content wrap">
-      <p class="eyebrow">
-        <span class="small-line"></span> Natura. Conoscenza. Connessioni.
-      </p>
-      <h1 id="hero-title">
-        C’è un mondo.
-        <br />
-        <em>Impara a leggerlo.</em>
-      </h1>
-      <div class="hero-bottom">
-        <p>
-          Esplorare, conoscere, condividere.
-          <br />
-          Un percorso dalla natura alla restituzione.
-        </p>
-        <a class="button button-light" href={href('il-cercatore/')}>
-          Comincia da Il Cercatore <span aria-hidden="true">↗</span>
+<Base immersive>
+  <div class="journey">
+    <JourneyOpening />
+    <JourneyWorld />
+    <nav class="journey-nav" aria-label="Tappe del viaggio">
+      {[
+        ['entra', 'Entra'],
+        ['sottosuolo', 'Il Cercatore'],
+        ['scoperte', 'Taccuino'],
+        ['orizzonti', 'Orizzonti'],
+        ['movimento', 'Movimento'],
+        ['restituire', 'Restituzione'],
+        ['riccardo', 'Riccardo'],
+      ].map(([id, label], index) => (
+        <a href={`#${id}`} aria-label={label} title={label}>
+          {String(index + 1).padStart(2, '0')}
         </a>
-      </div>
-    </div>
-    <span class="hero-side">FIELD JOURNAL — VOL. 01 / IL BOSCO</span>
-    <div class="hero-caption wrap">
-      <span>01 — Il punto di partenza</span>
-      <a href="#orizzonti">Scorri per esplorare ↓</a>
-    </div>
-  </section>
-  <section class="intro wrap section" id="orizzonti">
-    <p class="eyebrow section-label">
-      IL MONDO FLOW <span>↘</span>
-    </p>
-    <div>
-      <h2>
-        La conoscenza cresce
-        <br />
-        dove le cose <em>si incontrano.</em>
-      </h2>
-      <div class="intro-bottom">
-        <p>
-          Tra natura e cultura. Tra quello che sappiamo e quello che dobbiamo
-          ancora scoprire. FLOW è uno spazio per osservare, fare domande e
-          tornare a sentirsi parte del paesaggio. La nostra visione collega
-          apprendimento, comunità e cura dei luoghi.
-        </p>
-        <a class="text-link" href={href('manifesto/')}>
-          La nostra direzione ↗
-        </a>
-      </div>
-    </div>
-  </section>
-  <section class="feature wrap section">
-    <div class="feature-photo">
-      <Picture
-        src={woods}
-        alt="Bosco di conifere riflesso in un lago, con rilievi sullo sfondo"
-        widths={[480, 800, 1200]}
-        sizes="(max-width: 760px) 100vw, 50vw"
-        formats={['avif', 'webp']}
-        loading="lazy"
-      />
-      <span class="photo-label">IL PRIMO CAPITOLO DI FLOW</span>
-    </div>
-    <div class="feature-copy">
-      <p class="eyebrow">
-        PERCORSO 01 · {path.stops.length} TAPPE · {path.minutes} MINUTI
-      </p>
-      <h2>
-        Il bosco non
-        <br />
-        rivela tutto.
-        <br />
-        <em>
-          Ci insegna
-          <br />a osservare.
-        </em>
-      </h2>
-      <p>
-        Tartufi, natura e arte di leggere il bosco. Un percorso che parte da ciò
-        che non vediamo, per cambiare il modo in cui guardiamo tutto il resto.
-      </p>
-      <a class="text-link" href={href('il-cercatore/')}>
-        Segui le tre letture <span aria-hidden="true">↗</span>
-      </a>
-      <p class="path-caption">
-        Oggi: tre letture introduttive sul progetto e sul metodo. Il primo passo
-        di una ricerca più ampia.
-      </p>
-    </div>
-  </section>
-  <section class="explore-section section">
-    <div class="wrap">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">CONNESSIONI, NON CONFINI</p>
-          <h2>
-            Segui la tua <em>curiosità.</em>
-          </h2>
-        </div>
-        <a class="text-link" href={href('esplora/')}>
-          Tutti gli orizzonti ↗
-        </a>
-      </div>
-      <div class="area-grid">
-        {availableAreas.map((area, i) => (
-          <a class="area-item" href={href(`esplora/${area.id}/`)}>
-            <span class="area-number">0{i + 1}</span>
-            <h3>{area.title}</h3>
-            <p>{area.subtitle}</p>
-            <span class="area-bottom">
-              {posts.filter((post) => post.data.category === area.id).length}{' '}
-              letture <span aria-hidden="true">↗</span>
-            </span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-  <section class="wrap section">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">DAL TACCUINO</p>
-        <h2>
-          Prendere nota.
-          <br />
-          <em>Andare più a fondo.</em>
-        </h2>
-      </div>
-      <a class="text-link" href={href('taccuino/')}>
-        Tutte le letture ↗
-      </a>
-    </div>
-    <div class="stories-grid journal-grid">
-      {posts.slice(0, 3).map((entry, index) => (
-        <StoryCard entry={entry} index={index} />
       ))}
-    </div>
-  </section>
-  <section class="loop-band">
-    <div class="wrap section">
-      <FlowLoop />
-    </div>
-  </section>
-  <section class="newsletter wrap section">
-    <p class="eyebrow">RESTIAMO IN CAMMINO</p>
-    <h2>
-      Una nuova pagina.
-      <br />
-      <em>Quando c’è qualcosa da raccontare.</em>
-    </h2>
-    <p>
-      Segui le nuove letture con il feed RSS, senza algoritmi.
-      <br />
-    </p>
-    <a class="button" href={href('rss.xml')}>
-      Segui il taccuino via RSS <span aria-hidden="true">↗</span>
-    </a>
-  </section>
+    </nav>
+    <JourneyController />
+  </div>
 </Base>
-
-<style>
-  .path-caption {
-    font-size: 0.875rem;
-    border-top: 1px solid var(--line);
-    padding-top: 1rem;
-    color: var(--muted);
-  }
-  .loop-band {
-    background: var(--cream);
-    border-block: 1px solid var(--line);
-  }
-  .area-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .journal-grid {
-    grid-template-columns: 1.3fr 1fr;
-    gap: 2rem 4rem;
-  }
-  .journal-grid :global(.story-card:first-child) {
-    grid-row: span 2;
-  }
-  .journal-grid :global(.story-card:not(:first-child)) {
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    column-gap: 1.5rem;
-    align-content: start;
-    border-top: 1px solid var(--line);
-    padding-top: 1.5rem;
-  }
-  .journal-grid :global(.story-card:not(:first-child) .story-image) {
-    grid-row: span 4;
-    align-self: start;
-  }
-  .journal-grid :global(.story-card:not(:first-child) h3) {
-    font-size: clamp(24px, 2.3vw, 32px);
-  }
-  @media (max-width: 760px) {
-    .journal-grid,
-    .area-grid {
-      grid-template-columns: 1fr;
-    }
-    .journal-grid :global(.story-card:not(:first-child)) {
-      display: block;
-    }
-  }
-</style>

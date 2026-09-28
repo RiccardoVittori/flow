@@ -1,0 +1,320 @@
+---
+import { Picture } from 'astro:assets';
+import portrait from '../../assets/riccardo-vittori.jpg';
+import { readingPaths } from '../../lib/paths';
+import { areas } from '../../config/taxonomy';
+import { href } from '../../lib/urls';
+import FlowLoop from '../editorial/FlowLoop.astro';
+import Landscape from './Landscape.astro';
+import InkGesture from './InkGesture.astro';
+const path = (await readingPaths()).find(
+  (path) => path.entry.data.slug === 'il-cercatore',
+);
+if (!path) throw new Error('Percorso principale assente');
+const available = areas.filter((area) =>
+  path.stops.some((stop) => stop.article.data.category === area.id),
+);
+---
+
+<section
+  id="scoperte"
+  class="journey-scene discoveries-scene"
+  data-scene="Leggi"
+  aria-labelledby="discover-title"
+>
+  <svg
+    class="paper-edge"
+    viewBox="0 0 1440 120"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M0 80Q150 120 360 80T690 78 930 66 1180 81 1440 55V120H0Z"
+      fill="#f4ecd9"
+    />
+  </svg>
+  <div class="wrap">
+    <div class="scene-heading">
+      <p class="scene-kicker">03 / SCOPERTE LUNGO IL SENTIERO</p>
+      <h2 id="discover-title">
+        Ogni domanda
+        <br />
+        <em>lascia una traccia.</em>
+      </h2>
+      <p class="scene-intro">
+        Le prime pagine del taccuino. Tre soste per entrare nel progetto,
+        osservare meglio e collegare le idee.
+      </p>
+    </div>
+    <div class="discovery-trail">
+      <svg
+        class="notes-thread"
+        viewBox="0 0 1100 650"
+        preserveAspectRatio="none"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          data-draw
+          d="M85 0C660 140 280 185 840 210S176 337 227 447 779 470 909 650"
+          stroke="#a0804c"
+          stroke-width="1.5"
+          stroke-dasharray="5 8"
+        />
+      </svg>
+      {path.stops.map((stop, index) => (
+        <article class="discovery-note">
+          <span class="note-index" aria-hidden="true">
+            0{index + 1}
+          </span>
+          <div>
+            <p class="scene-kicker">
+              {stop.article.data.category} / {stop.article.data.readingTime} MIN
+              DI LETTURA
+            </p>
+            <h3>
+              <a href={href(`taccuino/${stop.article.data.slug}/`)}>
+                {stop.article.data.title}
+              </a>
+            </h3>
+            <p>{stop.question}</p>
+            <a
+              class="scene-link"
+              href={href(`taccuino/${stop.article.data.slug}/`)}
+            >
+              Apri il taccuino ↗
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <a class="scene-link" href={href('taccuino/')}>
+      Tutte le letture del Taccuino ↗
+    </a>
+  </div>
+</section>
+<section
+  id="orizzonti"
+  class="journey-scene horizons-scene"
+  data-scene="Esplora"
+  aria-labelledby="horizons-title"
+>
+  <div class="wrap horizons-copy">
+    <p class="scene-kicker">04 / UNA MAPPA APERTA</p>
+    <h2 id="horizons-title">
+      Un sentiero.
+      <br />
+      <em>Molti orizzonti.</em>
+    </h2>
+    <p class="scene-intro">
+      Dal bosco, lo sguardo si allarga. Segui ciò che puoi leggere oggi; le
+      altre direzioni cresceranno con le esperienze e i contenuti.
+    </p>
+    <nav class="available-paths" aria-label="Percorsi disponibili">
+      {available.map((area) => (
+        <a href={href(`esplora/${area.id}/`)}>
+          <span>ESPLORA ORA</span>
+          {area.title} ↗
+        </a>
+      ))}
+    </nav>
+    <details class="future-directions">
+      <summary>Gli orizzonti che immaginiamo</summary>
+      <p>
+        Foraging, survival, arti marziali, viaggi, culture ed esperienze. Sono
+        direzioni future: non attività già disponibili o prenotabili.
+      </p>
+    </details>
+  </div>
+  <div class="horizon-art">
+    <Landscape id="open-map" />
+  </div>
+</section>
+<section
+  id="movimento"
+  class="journey-scene movement-scene"
+  data-scene="Pratica"
+  aria-labelledby="movement-title"
+>
+  <div class="wrap movement-grid">
+    <div>
+      <p class="scene-kicker">05 / IL CORPO COME ASCOLTO</p>
+      <h2 id="movement-title">
+        Il gesto.
+        <br />
+        Il respiro.
+        <br />
+        <em>La quiete.</em>
+      </h2>
+      <p class="scene-intro">
+        Conoscere passa anche dalla pratica. Le arti marziali entrano in FLOW
+        come disciplina, movimento e ricerca personale: un’altra forma di
+        attenzione.
+      </p>
+      <a class="scene-link" href={href('chi-sono/#imparare')}>
+        Le esperienze da cui nasce FLOW ↗
+      </a>
+    </div>
+    <figure class="gesture-figure">
+      <InkGesture />
+      <figcaption>
+        Studio illustrato del gesto · non una sequenza tecnica.
+      </figcaption>
+    </figure>
+  </div>
+  <div class="motion-words" aria-hidden="true">
+    <span>presenza</span>
+    <span>equilibrio</span>
+    <span>ritorno</span>
+  </div>
+</section>
+<section
+  id="esperienza"
+  class="journey-scene experience-scene"
+  data-scene="Incontra"
+  aria-labelledby="experience-title"
+>
+  <div class="wrap experience-layout">
+    <p class="scene-kicker">06 / DALL’OSSERVARE AL FARE · VISIONE</p>
+    <h2 id="experience-title">
+      Ciò che impari
+      <br />
+      <em>prende vita.</em>
+    </h2>
+    <p class="scene-intro">
+      Camminare, praticare, preparare qualcosa insieme. Vorremmo creare
+      occasioni in cui conoscenze, persone e territori possano incontrarsi.
+    </p>
+    <div class="experience-notes">
+      <div>
+        <span>01 / ENTRARE</span>
+        <p>Ascoltare chi conosce e abita un luogo.</p>
+      </div>
+      <div>
+        <span>02 / SCAMBIARE</span>
+        <p>Imparare facendo e mettere in comune ciò che sappiamo.</p>
+      </div>
+      <div>
+        <span>03 / RESTITUIRE</span>
+        <p>Concordare un contributo e raccontare ciò che accade.</p>
+      </div>
+    </div>
+    <a class="scene-link" href={href('manifesto/')}>
+      Come immaginiamo le esperienze FLOW ↗
+    </a>
+    <p class="experience-status">
+      Una direzione da sviluppare. Nessuna esperienza prenotabile sul sito.
+    </p>
+  </div>
+  <svg
+    class="experience-rings"
+    viewBox="0 0 700 800"
+    fill="none"
+    aria-hidden="true"
+  >
+    <g stroke="#694b29" opacity=".28">
+      <path
+        data-draw
+        d="M650 60C80-40 55 280 355 280S760 535 370 610 75 750 280 800"
+        stroke-width="2"
+      />
+      <path d="M630 20C50-20 5 320 350 320S700 490 358 570 50 730 220 800" />
+      <path d="M680 110C135 0 110 239 360 240S810 580 392 660 140 780 350 830" />
+    </g>
+  </svg>
+</section>
+<section
+  id="restituire"
+  class="journey-scene return-scene"
+  data-scene="Restituisci"
+  aria-label="Il ciclo FLOW e la restituzione"
+>
+  <div class="wrap">
+    <p class="scene-kicker">07 / QUELLO CHE TORNA AI LUOGHI</p>
+    <FlowLoop />
+    <div class="life-domains">
+      <p>PERSONE</p>
+      <span aria-hidden="true">↔</span>
+      <p>FLORA</p>
+      <span aria-hidden="true">↔</span>
+      <p>FAUNA</p>
+    </div>
+    <div class="return-note">
+      <p>
+        Conoscenze, relazioni e risorse possono alimentare nuove possibilità. La
+        sostenibilità economica fa parte del percorso; la restituzione va scelta
+        e documentata, progetto per progetto.
+      </p>
+      <p>
+        <strong>Visione → Progetto → Azione → Impatto.</strong>
+        <br />
+        Oggi raccontiamo una visione e un progetto editoriale, non risultati di
+        rigenerazione già dimostrati.
+      </p>
+    </div>
+  </div>
+</section>
+<section
+  id="riccardo"
+  class="journey-scene person-scene"
+  data-scene="Conosci"
+  aria-labelledby="person-title"
+>
+  <div class="wrap person-grid">
+    <figure>
+      <Picture
+        src={portrait}
+        alt="Riccardo Vittori all’aperto, tra gli alberi"
+        widths={[320, 480, 640]}
+        sizes="(max-width:760px) 75vw, 30vw"
+        formats={['avif', 'webp']}
+        loading="lazy"
+      />
+      <figcaption>Riccardo Vittori / il percorso continua</figcaption>
+    </figure>
+    <div>
+      <p class="scene-kicker">08 / CHI C’È DIETRO</p>
+      <h2 id="person-title">
+        Anch’io,
+        <br />
+        <em>in cammino.</em>
+      </h2>
+      <p class="scene-intro">
+        Sono Riccardo. Natura, arti marziali, comunicazione ed esperienze con le
+        persone: FLOW è il filo con cui sto cercando di unire questi percorsi.
+      </p>
+      <a class="scene-link" href={href('chi-sono/')}>
+        Conosci Riccardo ↗
+      </a>
+    </div>
+  </div>
+</section>
+<section
+  id="orizzonte"
+  class="journey-scene final-scene"
+  data-scene="Riparti"
+  aria-labelledby="final-title"
+>
+  <div class="wrap final-copy">
+    <p class="scene-kicker">09 / OGNI ARRIVO È UN INIZIO</p>
+    <h2 id="final-title">
+      Il mondo è fuori.
+      <br />
+      <em>Il viaggio comincia qui.</em>
+    </h2>
+    <p>
+      Conoscere. Vivere. Comprendere.
+      <br />
+      Prendersi cura. Restituire.
+    </p>
+    <a class="journey-button" href={href('esplora/')}>
+      Inizia a esplorare ↗
+    </a>
+    <a class="scene-link" href={href('rss.xml')}>
+      Segui le nuove pagine via RSS
+    </a>
+  </div>
+  <div class="final-landscape">
+    <Landscape sunset id="last-horizon" />
+  </div>
+</section>

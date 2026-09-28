@@ -30,5 +30,25 @@
     "modifications": "Original copy; Astro responsive format conversion, full square framing",
     "purpose": "Personal portrait on Chi sono",
     "author": "Photographer not specified; no attribution invented"
+  },
+  {
+    "id": "flow-forest-illustration",
+    "path": "src/assets/flow-forest-illustration.png",
+    "source": "Generated with built-in imagegen on 2026-09-27; prompt in docs/visual-production.md",
+    "license": "Generated asset for FLOW; no third-party source image or artist style reference supplied",
+    "sha256": "1070462f58d2536fcbb6dc946fbf3a1a0ac7d20a6a02ef1a78eb3caf6e0968e0",
+    "modifications": "Astro responsive AVIF/JPEG conversion, optional WebP and layout crop",
+    "purpose": "Original conceptual forest background, not a documented location",
+    "author": "AI-generated for FLOW"
+  },
+  {
+    "id": "flow-underground-illustration",
+    "path": "src/assets/flow-underground-illustration.png",
+    "source": "Generated with built-in imagegen on 2026-09-27; prompt in docs/visual-production.md",
+    "license": "Generated asset for FLOW; no third-party source image or artist style reference supplied",
+    "sha256": "23fa76e336132c88eb1d8fb3bdfbf9d8e363c826306b6b9e40de3f5edbdb3fe7",
+    "modifications": "Astro responsive AVIF/JPEG conversion, optional WebP and layout crop",
+    "purpose": "Conceptual underground scene, not scientific evidence or an identification guide",
+    "author": "AI-generated for FLOW"
   }
 ]

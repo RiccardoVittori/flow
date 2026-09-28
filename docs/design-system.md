@@ -6,7 +6,7 @@ I token sono in `src/styles/tokens.css`: carta #f5f1e8, inchiostro #282820, musc
 
 Contenitore 1440 px; gutter fluido 22–80 px; testo massimo 68ch; titoli fluidi con clamp. Breakpoint 760 e 1000 px: CSS media queries esplicite (custom properties non utilizzabili nelle condizioni). Livelli CSS: token, base, layout, componenti. Spazi, bordi, ombre, motion e z-index centralizzati.
 
-Homepage: fotografia a tutta larghezza, manifesto asimmetrico, storia principale, griglia tipografica, taccuino asimmetrico, sentiero FLOW LOOP, RSS. Nessuno slider, scroll-jacking o carosello automatico.
+Homepage: dieci scene illustrate, dal bosco al sottosuolo, letture, orizzonti, pratica, esperienze, restituzione, Riccardo e tramonto. I componenti sono in `src/components/immersive/`, lo stile in `src/styles/immersive.css`. Il testo scorre normalmente; GSAP/ScrollTrigger coordina solo decorazioni e percorsi SVG. Nessuno slider, scroll-jacking o carosello automatico. Su mobile il fondale iniziale occupa una schermata e le trasformazioni sono ridotte. Senza JavaScript e con movimento ridotto il racconto rimane completo. Ricerca, regia e budget: [redesign immersivo](immersive-redesign.md); prompt e provenienza: [produzione visiva](visual-production.md).
 
 Navigazione mobile con details/summary: funziona senza JavaScript. Link di salto, focus evidente, landmark semantici, contrasto verificato automaticamente con axe. Reduced motion disabilita transizioni e smooth scroll. Le View Transitions sono solo progressive native CSS: nessun client router.
 

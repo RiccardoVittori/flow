@@ -52,6 +52,8 @@ Nessun backend commerce o newsletter email attivo. Feed RSS reale. Nessuna sched
 
 # Evoluzione editoriale e Chi sono — 26 settembre 2026
 
+La homepage ora propone un viaggio illustrato in dieci scene, con scroll nativo, animazioni progressive e versione statica accessibile. [Ricerca e architettura del redesign](docs/immersive-redesign.md), [asset originali e prompt](docs/visual-production.md), [verifiche](docs/validation.md).
+
 Homepage, [manifesto](https://riccardovittori.github.io/flow/manifesto/), percorso [Il Cercatore](https://riccardovittori.github.io/flow/il-cercatore/) e [Chi sono](https://riccardovittori.github.io/flow/chi-sono/) condividono il sistema visivo FLOW. Il percorso collega tre letture reali; aree e temi vuoti non generano voci di navigazione. La visione della restituzione resta distinta da azioni e impatti documentati.
 
 - [Audit, ricerca e decisioni](docs/evolution-audit.md)

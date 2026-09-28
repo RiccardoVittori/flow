@@ -1,0 +1,187 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import forest from '../../assets/flow-forest-illustration.png';
+import soil from '../../assets/flow-underground-illustration.png';
+import Foliage from './Foliage.astro';
+import { href } from '../../lib/urls';
+const mobileForest = await getImage({
+  src: forest,
+  width: 600,
+  height: 1200,
+  fit: 'cover',
+  format: 'avif',
+  quality: 60,
+});
+const desktopForest = await Promise.all(
+  [768, 1200, 1536].map((width) =>
+    getImage({ src: forest, width, format: 'avif', quality: 60 }),
+  ),
+);
+const fallbackForest = await getImage({
+  src: forest,
+  width: 1536,
+  format: 'jpg',
+  quality: 60,
+});
+---
+
+<div class="forest-chapter">
+  <div class="forest-stage" aria-hidden="true">
+    <picture>
+      <source
+        media="(max-width: 760px)"
+        type="image/avif"
+        srcset={mobileForest.src}
+      />
+      <source
+        type="image/avif"
+        srcset={desktopForest
+          .map((image) => `${image.src} ${image.options.width}w`)
+          .join(', ')}
+        sizes="100vw"
+      />
+      <img
+        class="forest-painting"
+        src={fallbackForest.src}
+        alt=""
+        width="1536"
+        height="1024"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </picture>
+    <div class="forest-shade"></div>
+    <div class="forest-mist"></div>
+    <div class="foreground foliage-left">
+      <Foliage />
+    </div>
+    <div class="foreground foliage-right">
+      <Foliage side="right" />
+    </div>
+  </div>
+  <section
+    id="entra"
+    class="journey-scene entry-scene"
+    data-scene="Entra"
+    aria-labelledby="entry-title"
+  >
+    <div class="scene-copy wrap">
+      <p class="scene-kicker">
+        <span class="trail-dot"></span> NATURA · CONOSCENZA · ESPLORAZIONE
+      </p>
+      <h1 id="entry-title">
+        Entra.
+        <br />
+        <em>
+          Guarda più
+          <br />
+          da vicino.
+        </em>
+      </h1>
+      <p class="scene-intro">
+        Un sentiero tra quello che vedi
+        <br />e quello che puoi ancora scoprire.
+      </p>
+      <a class="journey-button light" href="#osserva">
+        Segui il sentiero <span aria-hidden="true">↓</span>
+      </a>
+    </div>
+    <div class="scene-foot wrap">
+      <span>FLOW / UN MODO DI ESPLORARE LA VITA</span>
+      <a href={href('esplora/')}>Preferisci partire dalle letture? ↗</a>
+    </div>
+  </section>
+  <section
+    id="osserva"
+    class="journey-scene observation-scene"
+    data-scene="Osserva"
+    aria-labelledby="observe-title"
+  >
+    <div class="scene-copy wrap">
+      <p class="scene-kicker">01 / CAMBIARE SCALA</p>
+      <h2 id="observe-title">
+        Un bosco.
+        <br />
+        Un albero.
+        <br />
+        <em>Una domanda.</em>
+      </h2>
+      <p class="scene-intro">
+        FLOW comincia così: rallentare lo sguardo, seguire una traccia, mettere
+        in relazione ciò che incontriamo.
+      </p>
+      <a class="scene-link" href="#sottosuolo">
+        E sotto la superficie? ↓
+      </a>
+    </div>
+    <div class="field-observations" aria-hidden="true">
+      <span>01 — luce tra le foglie</span>
+      <span>02 — la trama della corteccia</span>
+      <span>03 — il terreno sotto i passi</span>
+    </div>
+    <svg
+      class="ground-edge"
+      viewBox="0 0 1440 130"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M0 69Q100 44 220 68T440 55 630 72 820 49 1010 70 1240 55 1440 71V130H0Z"
+        fill="#251b15"
+      />
+    </svg>
+  </section>
+</div>
+<section
+  id="sottosuolo"
+  class="journey-scene soil-scene"
+  data-scene="Il Cercatore"
+  aria-labelledby="soil-title"
+>
+  <div class="soil-art" aria-hidden="true">
+    <Picture
+      src={soil}
+      alt=""
+      widths={[480, 768, 1200, 1536]}
+      sizes="100vw"
+      formats={['avif', 'webp']}
+      fallbackFormat="jpg"
+      quality={60}
+      loading="lazy"
+    />
+  </div>
+  <div class="soil-shade"></div>
+  <svg class="root-lines" viewBox="0 0 900 700" fill="none" aria-hidden="true">
+    <g stroke="#d8b978" stroke-width="1.5" opacity=".65">
+      <path data-draw d="M490 0Q390 140 470 260T460 480 520 690" />
+      <path data-draw d="M465 245Q610 285 650 390T810 540" />
+      <path data-draw d="M453 470Q320 440 245 520T55 620" />
+      <path data-draw d="M643 380Q570 420 582 545" />
+      <path data-draw d="M273 503Q190 425 109 440" />
+    </g>
+  </svg>
+  <div class="scene-copy wrap">
+    <p class="scene-kicker">02 / IL PRIMO PERCORSO FLOW</p>
+    <h2 id="soil-title">
+      Il mondo
+      <br />
+      che non vedi.
+      <br />
+      <em>Il Cercatore.</em>
+    </h2>
+    <p class="scene-intro">
+      Tartufi, natura e arte di leggere il bosco. Si parte da ciò che è
+      nascosto, per imparare a guardare le relazioni.
+    </p>
+    <a class="journey-button light" href={href('il-cercatore/')}>
+      Esplora il mondo del tartufo <span aria-hidden="true">↗</span>
+    </a>
+    <p class="scene-aside">
+      Tre letture introduttive. Un progetto editoriale in cammino.
+    </p>
+  </div>
+  <p class="soil-caption">
+    Interpretazione illustrata del sottosuolo · non in scala · non utilizzabile
+    per identificare specie.
+  </p>
+</section>

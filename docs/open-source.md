@@ -15,5 +15,6 @@ Versioni esatte e dipendenze transitive: pnpm-lock.yaml. Non è stato copiato co
 | axe-core / axe Playwright                      | Audit accessibilità             | MPL-2.0          |
 | Lighthouse                                     | Misure sintetiche               | Apache-2.0       |
 | pnpm                                           | Gestione dipendenze             | MIT              |
+| GSAP + ScrollTrigger | Timeline della sola homepage, import differito | [Standard GSAP License](https://gsap.com/community/standard-license/), non MIT |
 
 Fotografie: Unsplash License, distinta dalle licenze software. Font license files conservati in public/licenses. I contenuti originali FLOW non vengono automaticamente concessi sotto le licenze delle dipendenze.

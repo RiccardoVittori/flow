@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import '../styles/tokens.css';
 import '../styles/fonts.css';
+import serifNormal from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2?url';
+import serifItalic from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-italic.woff2?url';
 import { href, absolute } from '../lib/urls';
 interface Props {
   title?: string;
@@ -9,6 +11,7 @@ interface Props {
   image?: string;
   article?: boolean;
   noindex?: boolean;
+  immersive?: boolean;
 }
 const {
   title = 'FLOW — Natura, conoscenza, esplorazione',
@@ -16,6 +19,7 @@ const {
   image = absolute('social.jpg'),
   article = false,
   noindex = false,
+  immersive = false,
 } = Astro.props;
 const canonical = new URL(
   Astro.url.pathname.endsWith('/404/')
@@ -35,6 +39,24 @@ const nav = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {immersive && (
+      <>
+        <link
+          rel="preload"
+          href={serifNormal}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+        <link
+          rel="preload"
+          href={serifItalic}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      </>
+    )}
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -74,7 +96,7 @@ const nav = [
     ></script>
     <slot name="head" />
   </head>
-  <body>
+  <body class:list={{ 'immersive-home': immersive }}>
     <a class="skip" href="#main">
       Vai al contenuto
     </a>

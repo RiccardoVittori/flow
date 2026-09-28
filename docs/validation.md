@@ -45,6 +45,46 @@ Il primo tentativo si era bloccato dopo i test nella chiusura del server avviato
 
 Verifica pubblica del 26 settembre 2026, ore 05:48 UTC: homepage, articolo, esplora, ricerca, RSS, sitemap e robots HTTP 200; URL inesistente HTTP 404 con pagina personalizzata. Ricerca «tartufi» e apertura del risultato riuscite. Axe mobile 390 px sulle quattro pagine HTML: 0 violazioni selezionate; nessun overflow o errore JavaScript. Evidenza locale: `artifacts/live-verification.json` e `artifacts/live-mobile.png`. I punteggi Lighthouse sopra restano misure locali, non nuove misure sul sito pubblico.
 
+# Redesign immersivo — 28 settembre 2026
+
+Questa sezione descrive la homepage illustrata e sostituisce i risultati precedenti per questa versione. I risultati storici sotto non sono nuove misure.
+
+- Typecheck: 71 file, zero errori, warning o hint. Build: 19 pagine; 547 collegamenti/asset/ancore, metadati, feed e sitemap verificati. Le collection senza contenuti restano vuote: i relativi avvisi di build sono attesi.
+- Test: 9 contratti Node e 20 scenari Playwright PASS. Otto pagine a 360/390/768/1280/1440 px, zero violazioni axe nelle regole WCAG A/AA selezionate e nessun overflow. Reflow a 320 px e testo al 200%, tastiera, ricerca e link reali verificati.
+- Nuovi scenari: motore differito e reversibile, interruttore manuale, no-JS, reduced motion senza scaricare GSAP, cambio della preferenza durante la visita, controlli touch e disclosure dei progetti futuri.
+- Prova aggiuntiva Chromium e WebKit in emulazione mobile: navigazione, ricerca, cambio reduced motion e axe PASS. Non equivale a Safari iOS/Android su hardware fisico. Nessuna prova umana con NVDA/VoiceOver.
+- Privacy: cartelle sorgente private assenti dall'indice Git e dall'artefatto pubblico; nessun PDF pubblico. Ritratto già autorizzato nel commit di partenza conservato. Le due nuove illustrazioni sono generate e identificate come concettuali nei crediti e nel registro asset.
+- Audit dipendenze: nessuna vulnerabilità nota segnalata. Unica nuova dipendenza runtime: GSAP 3.15.0, licenza Standard GSAP documentata.
+
+## Profilo sintetico dello scroll
+
+`node scripts/profile-journey.mjs`, server locale statico, Chromium, scroll nativo di sei secondi. File dettagliato locale `artifacts/immersive-profile.json`. Risorse conteggiate con Resource Timing, escluso documento HTML; non sono byte trasferiti dal CDN. Mobile è viewport 390×844 con CPU rallentata 4×, non uno smartphone fisico.
+
+| Misura | Desktop 1440×950 | Mobile simulato |
+| --- | ---: | ---: |
+| Risorse iniziali | 411.988 B | 287.095 B |
+| Risorse osservate fino a fine scroll | 762.675 B | 414.992 B |
+| Mediana / p95 intervalli frame | 16,7 / 16,8 ms | 16,7 / 16,7 ms |
+| Intervalli sopra 50 ms | 1 | 0 |
+| Long task durante scroll | 0 | 1 da 68 ms |
+| Layout durante la prova | 215 | 135 |
+| Heap JS al termine | 2,87 MB | 2,52 MB |
+
+Bootstrap: 1.338 B gzip; chunk differito GSAP/ScrollTrigger: 44.478 B gzip. Fondale forestale AVIF massimo: 257.180 B, sotto il budget mobile di 350 KB. I numeri delle risorse osservate non garantiscono che ogni asset lazy sia stato richiesto. La prova mostra il comportamento di questa macchina e non garantisce 60 fps su ogni dispositivo; il long task mobile resta un limite misurato. INP e Core Web Vitals sul campo non misurati.
+
+## Lighthouse del redesign
+
+Lighthouse 13.5.0, Chromium locale, mobile simulato, build finale. Una misura per pagina; homepage rimisurata dopo ritaglio mobile e preload dei font. File locali `artifacts/immersive-lh-*.json`.
+
+| Pagina | Performance / Accessibility / Best Practices / SEO | LCP | CLS | TBT |
+| --- | --- | ---: | ---: | ---: |
+| Homepage | 94 / 100 / 100 / 100 | 3,006 s | 0,00017 | 0 ms |
+| Il Cercatore | 99 / 100 / 100 / 100 | 1,951 s | 0,00001 | 0 ms |
+| Chi sono | 98 / 100 / 100 / 100 | 2,102 s | 0,02258 | 0 ms |
+| Articolo introduttivo | 97 / 100 / 100 / 100 | 2,401 s | 0,00005 | 0 ms |
+
+Homepage migliorata da 87 e LCP 3,751 s nella prima misura del redesign a 94 e 3,006 s. **Restano aperti il target performance ≥95 e LCP <2,5 s della homepage.** Nessuna certificazione WCAG o promessa di prestazioni sul campo deriva da questi audit. Priorità successive: misure su dispositivi fisici, prova assistiva umana e ottimizzazione ulteriore della prima schermata guidata da dati reali.
+
 # Evoluzione FLOW e Chi sono — 26 settembre 2026
 
 Questa sezione descrive la nuova versione; i risultati precedenti restano sotto come storico. Audit iniziale completato prima delle modifiche: 25 pagine, 618 collegamenti, 12 test browser.

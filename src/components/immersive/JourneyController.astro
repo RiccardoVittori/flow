@@ -1,0 +1,105 @@
+<div class="journey-tools">
+  <button type="button" class="motion-toggle" hidden aria-pressed="false">
+    Disattiva movimento
+  </button>
+</div>
+<script>
+  const root = document.querySelector<HTMLElement>('.journey');
+  const button = document.querySelector<HTMLButtonElement>('.motion-toggle');
+  if (root && button) {
+    const preference = matchMedia('(prefers-reduced-motion: reduce)');
+    let manualOff = false;
+    let cleanup: (() => void) | undefined;
+    let generation = 0;
+    let requested = false;
+    let loading = false;
+    let activePage = true;
+    const update = async () => {
+      if (!activePage) return;
+      const off = preference.matches || manualOff;
+      root.dataset.motion = off ? 'off' : 'on';
+      button.hidden = false;
+      button.disabled = preference.matches;
+      button.setAttribute('aria-pressed', String(off));
+      button.textContent = preference.matches
+        ? 'Movimento ridotto'
+        : off
+          ? 'Attiva movimento'
+          : 'Disattiva movimento';
+      if (off) {
+        generation++;
+        cleanup?.();
+        cleanup = undefined;
+        root.dataset.motionReady = 'false';
+        return;
+      }
+      if (!requested || cleanup || loading) return;
+      const version = ++generation;
+      loading = true;
+      try {
+        const { startSceneMotion } =
+          await import('../../lib/motion/scene-motion');
+        if (version === generation && !preference.matches && !manualOff) {
+          cleanup = startSceneMotion(root);
+          root.dataset.motionReady = 'true';
+        }
+      } catch {
+        root.dataset.motionReady = 'unavailable';
+      } finally {
+        loading = false;
+        if (version !== generation && !preference.matches && !manualOff)
+          void update();
+      }
+    };
+    button.addEventListener('click', () => {
+      manualOff = !manualOff;
+      requested = true;
+      void update();
+    });
+    preference.addEventListener('change', () => {
+      void update();
+    });
+    window.addEventListener(
+      'scroll',
+      () => {
+        requested = true;
+        void update();
+      },
+      { once: true, passive: true },
+    );
+    void update();
+    const nav = document.querySelector('.journey-nav');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries)
+          if (entry.isIntersecting) {
+            nav?.querySelectorAll('a').forEach((link) => {
+              if (link.getAttribute('href') === `#${entry.target.id}`)
+                link.setAttribute('aria-current', 'location');
+              else link.removeAttribute('aria-current');
+            });
+          }
+      },
+      { rootMargin: '-35% 0px -45% 0px' },
+    );
+    root
+      .querySelectorAll('[data-scene]')
+      .forEach((scene) => observer.observe(scene));
+    window.addEventListener('pagehide', () => {
+      activePage = false;
+      generation++;
+      cleanup?.();
+      cleanup = undefined;
+      observer.disconnect();
+    });
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        activePage = true;
+        root
+          .querySelectorAll('[data-scene]')
+          .forEach((scene) => observer.observe(scene));
+        void update();
+      }
+    });
+  }
+</script>
