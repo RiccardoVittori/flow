@@ -84,6 +84,8 @@ test.describe('Static journey', () => {
     page,
   }) => {
     await page.goto('http://127.0.0.1:4321' + base);
+    await expect(page.locator('.journey')).toHaveAttribute('data-motion', 'off');
+    await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto');
     await page.getByRole('link', { name: 'Segui il sentiero' }).click();
     await expect(page).toHaveURL(/#osserva$/);
     await expect(page.locator('[data-scene]')).toHaveCount(10);
