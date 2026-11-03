@@ -320,6 +320,13 @@ figcaption {
 .mission-copy > h3 {
   margin-bottom: 24px;
 }
+.philosophy-section h2,
+.philosophy-section h3 {
+  margin-bottom: 24px;
+}
+.philosophy-section {
+  border-bottom: 1px solid var(--line);
+}
 .mission-copy > p {
   color: #d2dacd;
   font-size: 0.9rem;

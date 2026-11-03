@@ -58,7 +58,7 @@ test('The free resource is a usable document with a real return path', async ({
     page.getByRole('button', { name: 'Stampa o salva in PDF' }),
   ).toBeVisible();
   await page.getByRole('link', { name: 'Torna a FLOW' }).click();
-  await expect(page.locator('h1')).toContainText('Il bosco è solo');
+  await expect(page.locator('h1')).toContainText('Feel Your');
 });
 
 test('The one-page experience and resources remain navigable without JavaScript', async ({
