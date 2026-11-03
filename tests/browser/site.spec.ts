@@ -85,7 +85,7 @@ test('Menu da tastiera, skip link e navigazione mobile', async ({ page }) => {
   await page.keyboard.press('Enter');
   await page
     .getByRole('navigation', { name: 'Navigazione mobile' })
-    .getByRole('link', { name: 'Esplora', exact: true })
+    .getByRole('link', { name: 'Taccuino', exact: true })
     .click();
   await expect(page).toHaveURL(new RegExp(base + 'esplora/$'));
 });

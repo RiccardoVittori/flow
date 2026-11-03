@@ -1,0 +1,643 @@
+---
+import { Picture } from 'astro:assets';
+import forest from '../assets/forest.jpg';
+import portrait from '../assets/riccardo-vittori.jpg';
+import { href, absolute } from '../lib/urls';
+import { launchContact } from '../config/launch';
+import '../styles/fonts.css';
+import '../styles/launch.css';
+const ready = Boolean(launchContact.whatsapp || launchContact.email);
+const interests = [
+  'Tartufo e bosco',
+  'Corpo e natura',
+  'Piante e tradizioni',
+  'Ritiro di sette giorni',
+  'Ospitare un’esperienza',
+  'Sponsor e collaborazioni',
+  'Progetti di cura e restituzione',
+];
+const title = 'FLOW — Esperienze in natura con Riccardo Vittori';
+const description =
+  'Tartufo e bosco, arti marziali all’aperto, piante e tradizioni. Piccoli gruppi, esperienze curate e incontri autentici.';
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={absolute()} />
+    <link rel="icon" href={href('favicon.svg')} type="image/svg+xml" />
+    <meta name="theme-color" content="#f5f1e8" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={absolute()} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={absolute('social.jpg')} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'FLOW',
+        url: absolute(),
+        creator: { '@type': 'Person', name: 'Riccardo Vittori' },
+      }).replace(/</g, '\\u003c')}
+    ></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Vai al contenuto
+    </a>
+    <header class="shell launch-header">
+      <a class="brand" href={href()} aria-label="FLOW, homepage">
+        FLOW<span>di Riccardo Vittori</span>
+      </a>
+      <nav class="wide-nav" aria-label="Navigazione principale">
+        <a href="#esperienze">Esperienze</a>
+        <a href="#percorsi">Il percorso</a>
+        <a href="#riccardo">Riccardo</a>
+        <a href="#collabora">Collabora</a>
+      </nav>
+      <a class="header-contact" href="#contatti">
+        Cominciamo ↗
+      </a>
+      <details class="mobile-nav">
+        <summary>Menu</summary>
+        <nav aria-label="Navigazione mobile">
+          <a href="#esperienze">Esperienze</a>
+          <a href="#percorsi">Il percorso</a>
+          <a href="#collabora">Collabora</a>
+          <a href={href('esplora/')}>Taccuino</a>
+        </nav>
+      </details>
+    </header>
+    <main id="main" data-pagefind-body>
+      <section class="hero shell">
+        <div>
+          <p class="eyebrow">NATURA · CORPO · CONOSCENZA</p>
+          <h1>
+            Il bosco è solo
+            <br />
+            <em>l’inizio.</em>
+          </h1>
+          <p class="intro">
+            Uscire, esplorare, ritrovare il gusto di imparare facendo.
+            Esperienze in natura che mettono in relazione il territorio, il
+            corpo e le persone.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#esperienze">
+              Trova la tua esperienza ↘
+            </a>
+            <a class="text-link" href="#riccardo">
+              Conosci Riccardo ↗
+            </a>
+          </div>
+          <p class="small hero-note">
+            Il primo passo: il tartufo. L’orizzonte: un modo più attento di
+            vivere la natura.
+          </p>
+        </div>
+        <figure>
+          <Picture
+            src={forest}
+            alt="La luce attraversa gli alberi nel bosco"
+            formats={['avif', 'webp']}
+            widths={[600, 1000, 1400]}
+            sizes="(max-width:760px) 100vw, 55vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <figcaption>Una curiosità diventa un’esperienza.</figcaption>
+        </figure>
+      </section>
+      <div class="shell manifesto-line">
+        <strong>Un progetto, più modi di incontrarsi.</strong>
+        <p>
+          Piccoli gruppi. Tempo per osservare. Persone con cui condividere il
+          cammino.
+        </p>
+      </div>
+      <section id="esperienze" class="section shell">
+        <div class="section-heading">
+          <p class="eyebrow">01 / DA DOVE COMINCIARE</p>
+          <h2>
+            Scegli ciò che
+            <br />
+            <em>ti muove.</em>
+          </h2>
+          <p>
+            Dal primo incontro di poche ore a una giornata immersiva. Ogni
+            proposta ha il suo ritmo e il suo pubblico.
+          </p>
+        </div>
+        <article class="featured experience">
+          <div>
+            <p class="eyebrow">01 · IL CERCATORE / TARTUFO E BOSCO</p>
+            <h3>
+              Un altro modo
+              <br />
+              di leggere il bosco.
+            </h3>
+            <p>
+              Seguire il lavoro del cane, osservare il terreno, scoprire ciò che
+              vive sotto i nostri passi. Un’esperienza sul tartufo, con la
+              possibilità di continuare a tavola.
+            </p>
+            <ul class="tags">
+              <li>Format breve · 2–3 ore</li>
+              <li>Piccoli gruppi</li>
+              <li>Visitatori e curiosi del territorio</li>
+            </ul>
+            <p class="small">
+              Uscita e degustazione sono moduli distinti: inclusioni, luogo e
+              condizioni saranno indicati nella proposta.
+            </p>
+            <a
+              href="#contatti"
+              class="text-link"
+              data-interest="Tartufo e bosco"
+            >
+              Parliamo della tua uscita ↗
+            </a>
+          </div>
+          <aside lang="en">
+            <p class="eyebrow">VISITING UMBRIA?</p>
+            <h4>
+              Discover the forest
+              <br />
+              through truffles.
+            </h4>
+            <p>
+              A small-group experience around truffles, nature and local
+              knowledge. Tell us your dates, group size and preferred language.
+              Location and availability are confirmed individually.
+            </p>
+            <a
+              href="#contatti"
+              class="text-link"
+              data-interest="Tartufo e bosco"
+            >
+              Plan your experience ↗
+            </a>
+          </aside>
+        </article>
+        <div class="pair">
+          <article class="experience">
+            <p class="eyebrow">02 · CORPO E NATURA</p>
+            <h3>
+              Pratica, presenza,
+              <br />
+              esperienza.
+            </h3>
+            <p>
+              Arti marziali all’aperto e bootcamp esperienziali: movimento,
+              ascolto e lavoro con il gruppo. Una giornata o un weekend, con
+              attività e conduzione definite per ogni edizione.
+            </p>
+            <p class="small">
+              Prime proposte in progettazione. Livello e requisiti saranno
+              espliciti.
+            </p>
+            <a
+              href="#contatti"
+              class="text-link"
+              data-interest="Corpo e natura"
+            >
+              Mi interessa questo percorso ↗
+            </a>
+          </article>
+          <article class="experience">
+            <p class="eyebrow">03 · PIANTE, TRADIZIONI, CONTEMPLAZIONE</p>
+            <h3>
+              Conoscenze vive,
+              <br />
+              tempo condiviso.
+            </h3>
+            <p>
+              Uscite sulle piante spontanee, racconti delle tradizioni e
+              incontri contemplativi. Quando previsto, una degustazione
+              preparata da operatori competenti conclude l’esperienza.
+            </p>
+            <p class="small">
+              Proposte culturali ed esperienziali, non prestazioni sanitarie o
+              promesse terapeutiche.
+            </p>
+            <a
+              href="#contatti"
+              class="text-link"
+              data-interest="Piante e tradizioni"
+            >
+              Scopriamo le possibilità ↗
+            </a>
+          </article>
+        </div>
+      </section>
+      <section id="percorsi" class="dark-section">
+        <div class="shell pair">
+          <div>
+            <p class="eyebrow">02 / UNA CONTINUITÀ POSSIBILE</p>
+            <h2>
+              Puoi fermarti un giorno.
+              <br />
+              <em>O andare più a fondo.</em>
+            </h2>
+            <p>
+              Non c’è un percorso obbligato. Un’uscita sul tartufo può bastare a
+              se stessa; chi desidera continuare può trovare una giornata, un
+              weekend o un’esperienza più lunga.
+            </p>
+            <a
+              class="button light"
+              href="#contatti"
+              data-interest="Ritiro di sette giorni"
+            >
+              Esprimi interesse per il ritiro ↗
+            </a>
+          </div>
+          <ol class="path-steps">
+            <li>
+              <span>INCONTRARE</span>
+              <h3>Poche ore nel bosco</h3>
+              <p>Un primo contatto con il territorio e le persone.</p>
+            </li>
+            <li>
+              <span>APPROFONDIRE</span>
+              <h3>Una giornata o un weekend</h3>
+              <p>Un tema preciso, più pratica, tempo per il gruppo.</p>
+            </li>
+            <li>
+              <span>IMMERGERSI</span>
+              <h3>Un ritiro di sette giorni</h3>
+              <p>
+                Un progetto futuro fra natura, corpo e contemplazione. Luogo,
+                programma e date da definire. L’interesse non è una prenotazione
+                e qui non viene richiesto alcun pagamento.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+      <section class="section shell pair resource-section">
+        <div>
+          <p class="eyebrow">03 / QUALCOSA DA PORTARE CON TE</p>
+          <h2>
+            La curiosità continua.
+            <br />
+            <em>Anche dopo l’uscita.</em>
+          </h2>
+          <p>
+            Il taccuino FLOW è una scheda gratuita per annotare osservazioni,
+            domande e ciò che desideri approfondire. Puoi usarlo sullo schermo o
+            stamparlo.
+          </p>
+          <div class="actions">
+            <a class="button primary" href={href('risorse/taccuino-flow.html')}>
+              Apri il taccuino gratuito ↗
+            </a>
+            <a class="text-link" href={href('esplora/')}>
+              Leggi il taccuino online ↗
+            </a>
+          </div>
+          <p class="small">
+            Libri, video e risorse digitali sono parte del progetto in sviluppo.
+            Nessun prodotto a pagamento è acquistabile da questa pagina.
+          </p>
+        </div>
+        <div class="paper-preview" aria-hidden="true">
+          <span>FLOW / TACCUINO</span>
+          <h3>
+            Che cosa hai
+            <br />
+            <em>notato oggi?</em>
+          </h3>
+          <div></div>
+          <div></div>
+          <div></div>
+          <p>Osservare → domandare → approfondire</p>
+        </div>
+      </section>
+      <section id="riccardo" class="section shell pair about-grid">
+        <figure>
+          <Picture
+            src={portrait}
+            alt="Riccardo Vittori, fondatore del progetto FLOW"
+            formats={['avif', 'webp']}
+            widths={[400, 700]}
+            sizes="(max-width:760px) 90vw, 35vw"
+            loading="lazy"
+          />
+        </figure>
+        <div>
+          <p class="eyebrow">04 / DIETRO FLOW</p>
+          <h2>
+            Sono Riccardo.
+            <br />
+            <em>Puoi chiamarmi Rio.</em>
+          </h2>
+          <p>
+            FLOW nasce dall’incontro fra il mio interesse per la natura, la
+            pratica marziale e l’esperienza nella formazione e
+            nell’organizzazione di eventi.
+          </p>
+          <p>
+            Voglio costruire incontri curati, in cui esplorare e fare esperienza
+            insieme. Il tartufo è un punto di partenza concreto; il filo che
+            unisce tutto è imparare facendo, con rispetto per luoghi e persone.
+          </p>
+          <a class="text-link" href={href('chi-sono/')}>
+            Il mio percorso ↗
+          </a>
+        </div>
+      </section>
+      <section id="collabora" class="section shell collaboration">
+        <div class="section-heading">
+          <p class="eyebrow">05 / COSTRUIRE INSIEME</p>
+          <h2>
+            Una buona esperienza
+            <br />
+            <em>ha più di una firma.</em>
+          </h2>
+          <p>
+            FLOW cerca relazioni concrete con chi condivide attenzione per il
+            territorio, qualità dell’esperienza e rispetto delle persone.
+          </p>
+        </div>
+        <div class="collab-grid">
+          <article>
+            <h3>Ospita</h3>
+            <p>
+              Hai una struttura o un terreno adatto? Possiamo progettare
+              un’esperienza coerente con il luogo, definendo ruoli, condizioni e
+              responsabilità.
+            </p>
+          </article>
+          <article>
+            <h3>Condividi competenze</h3>
+            <p>
+              Insegnanti, professionisti della natura e custodi di tradizioni:
+              un programma nasce da competenze reali e da un progetto condiviso.
+            </p>
+          </article>
+          <article>
+            <h3>Sostieni</h3>
+            <p>
+              Per aziende, scuole, università ed enti: proposte educative, posti
+              sostenuti e collaborazioni territoriali con obiettivi e
+              rendicontazione definiti.
+            </p>
+          </article>
+        </div>
+        <a
+          class="text-link"
+          href="#contatti"
+          data-interest="Sponsor e collaborazioni"
+        >
+          Proponi una collaborazione ↗
+        </a>
+        <p class="small">
+          Le collaborazioni sono da costruire: non sono dichiarati sponsor,
+          affiliazioni o risultati sociali già acquisiti.
+        </p>
+      </section>
+      <section id="restituzione" class="dark-section">
+        <div class="shell pair">
+          <div>
+            <p class="eyebrow">06 / PRENDERSI CURA</p>
+            <h2>
+              Incontrare un luogo.
+              <br />
+              <em>Contribuire al suo futuro.</em>
+            </h2>
+            <p>
+              La visione FLOW comprende esperienze che possano sostenere
+              persone, animali e habitat, rispettando tradizioni, spiritualità e
+              culture dei luoghi. Dal territorio vicino a collaborazioni fra
+              Paesi: i progetti nascono con chi quei luoghi li vive.
+            </p>
+            <a
+              class="button light"
+              href="#contatti"
+              data-interest="Progetti di cura e restituzione"
+            >
+              Costruiamo un progetto ↗
+            </a>
+          </div>
+          <div class="mission-copy">
+            <h3>
+              Un bisogno reale.
+              <br />
+              Un impegno leggibile.
+            </h3>
+            <p>
+              Recupero di habitat, cura del territorio, tutela degli animali o
+              iniziative educative: scegliamo interventi con responsabili,
+              competenze e continuità, non soltanto un gesto durante l’evento.
+            </p>
+            <p>
+              Quota dell’esperienza, compensi organizzativi e fondi per il
+              progetto locale saranno distinti. Eventuali raccolte volontarie
+              avranno beneficiario, obiettivo e rendiconto espliciti, anche per
+              chi non partecipa all’esperienza.
+            </p>
+            <p>
+              È una direzione da costruire: oggi non sono aperte raccolte fondi,
+              né vengono dichiarati interventi o benefici già realizzati.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="contatti" class="section shell pair contact-grid">
+        <div>
+          <p class="eyebrow">07 / IL PROSSIMO PASSO</p>
+          <h2>
+            Da cosa
+            <br />
+            <em>cominciamo?</em>
+          </h2>
+          <p>
+            Racconta che cosa ti interessa, in quanti siete e quando vorresti
+            partecipare. Per sedi e collaborazioni, descrivi la tua proposta.
+          </p>
+          <p>
+            Il calendario delle prime esperienze è in preparazione. Luogo,
+            prezzo, disponibilità e organizzatore saranno confermati prima di
+            qualsiasi prenotazione.
+          </p>
+          {!ready && (
+            <p class="contact-status">
+              Il contatto diretto sarà disponibile a breve. Puoi già preparare e
+              salvare la tua richiesta.
+            </p>
+          )}
+        </div>
+        <form
+          id="interest-form"
+          data-whatsapp={launchContact.whatsapp}
+          data-email={launchContact.email}
+        >
+          <label>
+            Mi interessa
+            <select name="interest" id="interest">
+              {interests.map((value) => (
+                <option>{value}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Come ti chiami?
+            <input name="name" autocomplete="name" maxlength="100" required />
+          </label>
+          <div class="form-row">
+            <label>
+              Partecipanti
+              <input
+                name="people"
+                type="number"
+                min="1"
+                max="100"
+                inputmode="numeric"
+              />
+            </label>
+            <label>
+              Periodo desiderato
+              <input
+                name="period"
+                maxlength="100"
+                placeholder="Es. un weekend di dicembre"
+              />
+            </label>
+          </div>
+          <label>
+            La tua richiesta
+            <textarea
+              name="message"
+              rows="4"
+              maxlength="1500"
+              placeholder="Racconta cosa cerchi, senza inserire dati sanitari o sensibili."
+            ></textarea>
+          </label>
+          <p class="small">
+            La richiesta viene preparata nel tuo browser.{' '}
+            {ready
+              ? 'Sarai tu a inviarla tramite il contatto scelto.'
+              : 'Non è inviata a FLOW: puoi copiarla o scaricarla.'}{' '}
+            <a href={href('privacy/')}>Privacy</a>.
+          </p>
+          <button class="button primary" type="submit">
+            Prepara la richiesta ↗
+          </button>
+          <div id="request-result" hidden>
+            <label>
+              Messaggio preparato
+              <textarea id="request-text" rows="7" readonly></textarea>
+            </label>
+            <div class="actions">
+              <a id="send-request" class="button primary" hidden>
+                Invia il messaggio ↗
+              </a>
+              <button type="button" class="button secondary" id="copy-request">
+                Copia
+              </button>
+              <button type="button" class="text-button" id="download-request">
+                Salva .txt
+              </button>
+            </div>
+          </div>
+          <p id="request-status" role="status" aria-live="polite"></p>
+          <noscript>
+            <p>
+              Il modulo richiede JavaScript. Esperienze e taccuino restano
+              consultabili.
+            </p>
+          </noscript>
+        </form>
+      </section>
+    </main>
+    <footer class="shell launch-footer">
+      <a class="brand" href={href()}>
+        FLOW<span>Natura. Corpo. Conoscenza.</span>
+      </a>
+      <p>
+        Un progetto di Riccardo Vittori.
+        <br />
+        Un’identità che cresce attraverso esperienze concrete.
+      </p>
+      <nav aria-label="Informazioni">
+        <a href={href('chi-sono/')}>Chi sono</a>
+        <a href={href('privacy/')}>Privacy</a>
+        <a href={href('manifesto/')}>Manifesto</a>
+      </nav>
+    </footer>
+    <script>
+      const form = document.querySelector<HTMLFormElement>('#interest-form');
+      const select = document.querySelector<HTMLSelectElement>('#interest');
+      const text = document.querySelector<HTMLTextAreaElement>('#request-text');
+      const status = document.querySelector<HTMLElement>('#request-status');
+      document
+        .querySelectorAll<HTMLAnchorElement>('[data-interest]')
+        .forEach((link) =>
+          link.addEventListener('click', () => {
+            if (select) select.value = link.dataset.interest || '';
+          }),
+        );
+      form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const d = new FormData(form);
+        const message = `FLOW — ${String(d.get('interest') || '')}\nNome: ${String(d.get('name') || '')}\nPartecipanti: ${String(d.get('people') || 'da definire')}\nPeriodo: ${String(d.get('period') || 'da definire')}\n\n${String(d.get('message') || '')}\n\nRichiesta di informazioni, non prenotazione.`;
+        if (text) text.value = message;
+        const result = document.querySelector<HTMLElement>('#request-result');
+        if (result) result.hidden = false;
+        const phone = (form.dataset.whatsapp || '').replace(/\D/g, '');
+        const email = form.dataset.email || '';
+        const send = document.querySelector<HTMLAnchorElement>('#send-request');
+        if (send && (phone || email)) {
+          send.href = phone
+            ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+            : `mailto:${email}?subject=${encodeURIComponent('FLOW — richiesta informazioni')}&body=${encodeURIComponent(message)}`;
+          send.hidden = false;
+          send.target = phone ? '_blank' : '_self';
+          send.rel = 'noopener';
+        }
+        if (status)
+          status.textContent =
+            phone || email
+              ? 'Messaggio preparato. Apri il contatto e invialo per farci ricevere la richiesta.'
+              : 'Richiesta preparata, non inviata. Il contatto diretto non è ancora attivo: puoi copiare o salvare il testo.';
+      });
+      document
+        .querySelector('#copy-request')
+        ?.addEventListener('click', async () => {
+          if (!text) return;
+          try {
+            await navigator.clipboard.writeText(text.value);
+            if (status)
+              status.textContent =
+                'Testo copiato. Nessun messaggio inviato automaticamente.';
+          } catch {
+            text.focus();
+            text.select();
+            if (status)
+              status.textContent = 'Seleziona e copia il testo del messaggio.';
+          }
+        });
+      document
+        .querySelector('#download-request')
+        ?.addEventListener('click', () => {
+          if (!text) return;
+          const url = URL.createObjectURL(
+            new Blob([text.value], { type: 'text/plain;charset=utf-8' }),
+          );
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'richiesta-flow.txt';
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+        });
+    </script>
+  </body>
+</html>

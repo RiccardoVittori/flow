@@ -1,30 +1,5 @@
 ---
-import Base from '../layouts/Base.astro';
-import JourneyOpening from '../components/immersive/JourneyOpening.astro';
-import JourneyController from '../components/immersive/JourneyController.astro';
-import JourneyWorld from '../components/immersive/JourneyWorld.astro';
-import '../styles/immersive.css';
+import LaunchPage from '../components/LaunchPage.astro';
 ---
 
-<Base immersive>
-  <div class="journey" data-motion="off">
-    <JourneyOpening />
-    <JourneyWorld />
-    <nav class="journey-nav" aria-label="Tappe del viaggio">
-      {[
-        ['entra', 'Entra'],
-        ['sottosuolo', 'Il Cercatore'],
-        ['scoperte', 'Taccuino'],
-        ['orizzonti', 'Orizzonti'],
-        ['movimento', 'Movimento'],
-        ['restituire', 'Restituzione'],
-        ['riccardo', 'Riccardo'],
-      ].map(([id, label], index) => (
-        <a href={`#${id}`} aria-label={label} title={label}>
-          {String(index + 1).padStart(2, '0')}
-        </a>
-      ))}
-    </nav>
-    <JourneyController />
-  </div>
-</Base>
+<LaunchPage />
