@@ -10,10 +10,13 @@ const ready = Boolean(launchContact.whatsapp || launchContact.email);
 const interests = [
   'Tartufo e bosco',
   'Corpo e natura',
+  'Bootcamp',
   'Piante e tradizioni',
   'Ritiro di sette giorni',
   'Ospitare un’esperienza',
   'Sponsor e collaborazioni',
+  'Docenti e professionisti',
+  'Partner ambientali',
   'Progetti di cura e restituzione',
 ];
 const title = 'FLOW — Feel Your HeART | Riccardo Vittori';
@@ -57,9 +60,9 @@ const description =
         FLOW<span>di Riccardo Vittori</span>
       </a>
       <nav class="wide-nav" aria-label="Navigazione principale">
-        <a href="#esperienze">Esperienze</a>
-        <a href="#percorsi">Il percorso</a>
-        <a href="#riccardo">Riccardo</a>
+        <a href="#esperienze">Experiences</a>
+        <a href="#bootcamps">Bootcamps</a>
+        <a href="#restituzione">Projects</a>
         <a href="#collabora">Collabora</a>
       </nav>
       <a class="header-contact" href="#contatti">
@@ -68,8 +71,9 @@ const description =
       <details class="mobile-nav">
         <summary>Menu</summary>
         <nav aria-label="Navigazione mobile">
-          <a href="#esperienze">Esperienze</a>
-          <a href="#percorsi">Il percorso</a>
+          <a href="#esperienze">Experiences</a>
+          <a href="#bootcamps">Bootcamps</a>
+          <a href="#restituzione">Projects</a>
           <a href="#collabora">Collabora</a>
           <a href={href('esplora/')}>Taccuino</a>
         </nav>
@@ -116,10 +120,10 @@ const description =
         </figure>
       </section>
       <div class="shell manifesto-line">
-        <strong>Un progetto, più modi di incontrarsi.</strong>
+        <strong>Experiences · Bootcamps · Projects</strong>
         <p>
-          Piccoli gruppi. Tempo per osservare. Persone con cui condividere il
-          cammino.
+          Esperienze per incontrarsi, pratica per approfondire, progetti per
+          prendersi cura. Tre direzioni di un unico percorso FLOW.
         </p>
       </div>
       <section id="filosofia" class="section shell pair philosophy-section">
@@ -167,7 +171,7 @@ const description =
       </section>
       <section id="esperienze" class="section shell">
         <div class="section-heading">
-          <p class="eyebrow">01 / DA DOVE COMINCIARE</p>
+          <p class="eyebrow">01 / EXPERIENCES</p>
           <h2>
             Scegli ciò che
             <br />
@@ -175,7 +179,9 @@ const description =
           </h2>
           <p>
             Dal primo incontro di poche ore a una giornata immersiva. Ogni
-            proposta ha il suo ritmo e il suo pubblico.
+            proposta ha il suo ritmo e il suo pubblico. Il tartufo è una prima
+            offerta concreta dentro un mondo più ampio di natura, movimento,
+            cultura e convivialità.
           </p>
         </div>
         <article class="featured experience">
@@ -230,8 +236,8 @@ const description =
           </aside>
         </article>
         <div class="pair">
-          <article class="experience">
-            <p class="eyebrow">02 · CORPO E NATURA</p>
+          <article id="bootcamps" class="experience">
+            <p class="eyebrow">BOOTCAMPS / CORPO E NATURA</p>
             <h3>
               Pratica, presenza,
               <br />
@@ -246,11 +252,7 @@ const description =
               Prime proposte in progettazione. Livello e requisiti saranno
               espliciti.
             </p>
-            <a
-              href="#contatti"
-              class="text-link"
-              data-interest="Corpo e natura"
-            >
+            <a href="#contatti" class="text-link" data-interest="Bootcamp">
               Mi interessa questo percorso ↗
             </a>
           </article>
@@ -349,6 +351,18 @@ const description =
           <p class="small">
             Libri, video e risorse digitali sono parte del progetto in sviluppo.
             Nessun prodotto a pagamento è acquistabile da questa pagina.
+          </p>
+          <h3>Una storia da vivere. E da raccontare.</h3>
+          <p>
+            Su YouTube voglio documentare il percorso reale: la preparazione,
+            Alba, le uscite, gli allenamenti e gli incontri; in futuro, i viaggi
+            e la realizzazione dei progetti. Le testimonianze saranno libere,
+            raccolte con consenso e senza pressioni a comparire.
+          </p>
+          <p class="small">
+            L’AI potrà aiutare nel montaggio, nei testi e nella creazione di
+            risorse. Il racconto resterà ancorato a ciò che viviamo davvero. Il
+            canale dedicato non è ancora disponibile da questa pagina.
           </p>
         </div>
         <div class="paper-preview" aria-hidden="true">
@@ -456,17 +470,19 @@ const description =
       <section id="restituzione" class="dark-section">
         <div class="shell pair">
           <div>
-            <p class="eyebrow">06 / PRENDERSI CURA</p>
+            <p class="eyebrow">PROJECTS / PRENDERSI CURA</p>
             <h2>
               Incontrare un luogo.
               <br />
               <em>Contribuire al suo futuro.</em>
             </h2>
             <p>
-              La visione FLOW comprende esperienze che possano sostenere
-              persone, animali e habitat, rispettando tradizioni, spiritualità e
-              culture dei luoghi. Dal territorio vicino a collaborazioni fra
-              Paesi: i progetti nascono con chi quei luoghi li vive.
+              La visione FLOW collega formazione esperienziale, conservazione,
+              rigenerazione, solidarietà e scambio interculturale: esperienze
+              che possano sostenere persone, animali e habitat, rispettando
+              tradizioni, spiritualità e culture dei luoghi. Dal territorio
+              vicino a collaborazioni fra Paesi: i progetti nascono con chi quei
+              luoghi li vive.
             </p>
             <a
               class="button light"
@@ -511,6 +527,8 @@ const description =
           <p>
             Racconta che cosa ti interessa, in quanti siete e quando vorresti
             partecipare. Per sedi e collaborazioni, descrivi la tua proposta.
+            Puoi segnalare interesse per i bootcamp o proporti come docente,
+            professionista, struttura ospitante o partner ambientale.
           </p>
           <p>
             Il calendario delle prime esperienze è in preparazione. Luogo,
