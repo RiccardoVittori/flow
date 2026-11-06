@@ -34,9 +34,11 @@ test('Interest in the longer retreat does not become a booking or payment', asyn
 }) => {
   await page.goto(base);
   await page
-    .getByRole('link', { name: 'Esprimi interesse per il ritiro ↗' })
+    .getByRole('link', { name: 'Esprimi interesse per Immersive ↗' })
     .click();
-  await expect(page.locator('#interest')).toHaveValue('Ritiro di sette giorni');
+  await expect(page.locator('#interest')).toHaveValue(
+    'FLOW Immersive — 2–3 giorni',
+  );
   await expect(page.locator('#percorsi')).toContainText(
     'non è una prenotazione',
   );
@@ -83,4 +85,44 @@ test('The one-page experience and resources remain navigable without JavaScript'
   } finally {
     await context.close();
   }
+});
+
+test('Fresh truffle and lesson enquiries keep their own fields and do not leak hidden values', async ({
+  page,
+}) => {
+  await page.goto(base);
+  await page
+    .getByRole('link', { name: 'Richiedi disponibilità tartufo ↗' })
+    .click();
+  await expect(page.locator('#truffle-fields')).toBeVisible();
+  await page
+    .getByRole('textbox', { name: 'Come ti chiami?' })
+    .fill('Test richiesta');
+  await page
+    .getByRole('textbox', { name: 'Specie o preferenza' })
+    .fill('Specie da consigliare');
+  await page
+    .getByRole('spinbutton', { name: 'Quantità in grammi' })
+    .fill('100');
+  await page.getByRole('button', { name: 'Prepara la richiesta ↗' }).click();
+  await expect(page.locator('#request-text')).toHaveValue(/Grammi: 100/);
+  await expect(page.locator('#request-text')).toHaveValue(
+    /non prenotazione né ordine/,
+  );
+  await page
+    .getByRole('link', { name: 'Parliamo della tua pratica ↗' })
+    .click();
+  await expect(page.locator('#lesson-fields')).toBeVisible();
+  await expect(page.locator('#truffle-fields')).toBeHidden();
+  await page
+    .getByRole('combobox', { name: 'Modalità', exact: true })
+    .selectOption('Online');
+  await page.getByRole('button', { name: 'Prepara la richiesta ↗' }).click();
+  await expect(page.locator('#request-text')).toHaveValue(/Modalità: Online/);
+  await expect(page.locator('#request-text')).not.toHaveValue(/Grammi: 100/);
+  await page
+    .getByRole('link', { name: 'Mi interessa un’uscita sociale ↗' })
+    .click();
+  await expect(page.locator('#meal-fields')).toBeVisible();
+  await expect(page.locator('#lesson-fields')).toBeHidden();
 });

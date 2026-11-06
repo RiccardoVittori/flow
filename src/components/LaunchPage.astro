@@ -8,16 +8,16 @@ import '../styles/fonts.css';
 import '../styles/launch.css';
 const ready = Boolean(launchContact.whatsapp || launchContact.email);
 const interests = [
-  'Tartufo e bosco',
-  'Corpo e natura',
-  'Bootcamp',
-  'Piante e tradizioni',
-  'Ritiro di sette giorni',
+  'Degustazioni, gastronomia e arte',
+  'FLOW Immersive — 2–3 giorni',
+  'Nature Experience — uscita sociale',
+  'Private Truffle Experience',
+  'Tartufo fresco su ordinazione',
+  'Lezioni arti marziali',
   'Ospitare un’esperienza',
   'Sponsor e collaborazioni',
   'Docenti e professionisti',
   'Partner ambientali',
-  'Progetti di cura e restituzione',
 ];
 const title = 'FLOW — Feel Your HeART | Riccardo Vittori';
 const description =
@@ -61,8 +61,8 @@ const description =
       </a>
       <nav class="wide-nav" aria-label="Navigazione principale">
         <a href="#esperienze">Experiences</a>
-        <a href="#bootcamps">Bootcamps</a>
-        <a href="#restituzione">Projects</a>
+        <a href="#percorsi">Immersive</a>
+        <a href="#servizi">Tartufo e lezioni</a>
         <a href="#collabora">Collabora</a>
       </nav>
       <a class="header-contact" href="#contatti">
@@ -72,8 +72,8 @@ const description =
         <summary>Menu</summary>
         <nav aria-label="Navigazione mobile">
           <a href="#esperienze">Experiences</a>
-          <a href="#bootcamps">Bootcamps</a>
-          <a href="#restituzione">Projects</a>
+          <a href="#percorsi">Immersive</a>
+          <a href="#servizi">Tartufo e lezioni</a>
           <a href="#collabora">Collabora</a>
           <a href={href('esplora/')}>Taccuino</a>
         </nav>
@@ -120,10 +120,10 @@ const description =
         </figure>
       </section>
       <div class="shell manifesto-line">
-        <strong>Experiences · Bootcamps · Projects</strong>
+        <strong>Gastronomia e arte · Immersive · Nature Experience</strong>
         <p>
-          Esperienze per incontrarsi, pratica per approfondire, progetti per
-          prendersi cura. Tre direzioni di un unico percorso FLOW.
+          Tre modi di vivere FLOW: una serata da condividere, due o tre giorni
+          di immersione, un’uscita per conoscere il territorio e nuove persone.
         </p>
       </div>
       <section id="filosofia" class="section shell pair philosophy-section">
@@ -178,153 +178,208 @@ const description =
             <em>ti muove.</em>
           </h2>
           <p>
-            Dal primo incontro di poche ore a una giornata immersiva. Ogni
-            proposta ha il suo ritmo e il suo pubblico. Il tartufo è una prima
-            offerta concreta dentro un mondo più ampio di natura, movimento,
-            cultura e convivialità.
+            Gastronomia, pratica e natura. Tre famiglie di incontri, ciascuna
+            con un pubblico, un ritmo e un programma propri. Le prime date sono
+            in preparazione.
           </p>
+        </div>
+        <div class="pair">
+          <article class="experience">
+            <p class="eyebrow">LA TERRA A TAVOLA</p>
+            <h3>
+              Gastronomia.
+              <br />
+              Arte. Convivialità.
+            </h3>
+            <p>
+              Serate intime con menu fisso, olio extravergine, tartufo e
+              prodotti stagionali. Musica su vinile o dal vivo e racconti del
+              territorio accompagnano la tavola. Ogni edizione ha un tema
+              gastronomico, musicale o culturale.
+            </p>
+            <p class="small">
+              Menu, sede, prezzo e inclusioni saranno definiti per ogni serata.
+            </p>
+            <a
+              href="#contatti"
+              class="text-link"
+              data-interest="Degustazioni, gastronomia e arte"
+            >
+              Mi interessa una serata ↗
+            </a>
+          </article>
+          <article class="experience">
+            <p class="eyebrow">FLOW NATURE EXPERIENCE</p>
+            <h3>
+              Esplorare un luogo.
+              <br />
+              Incontrare persone.
+            </h3>
+            <p>
+              Uscite brevi condivise, con posti individuali: osservazione,
+              conoscenza del territorio e socialità. Un pranzo o buffet può
+              completare l’incontro, come opzione con prezzo separato.
+            </p>
+            <p class="small">
+              Percorso, difficoltà, requisiti e condizioni meteo saranno
+              indicati nella proposta.
+            </p>
+            <a
+              href="#contatti"
+              class="text-link"
+              data-interest="Nature Experience — uscita sociale"
+            >
+              Mi interessa un’uscita sociale ↗
+            </a>
+          </article>
         </div>
         <article class="featured experience">
           <div>
-            <p class="eyebrow">01 · IL CERCATORE / TARTUFO E BOSCO</p>
+            <p class="eyebrow">IL CERCATORE / PRIVATE TRUFFLE EXPERIENCE</p>
             <h3>
               Un altro modo
               <br />
               di leggere il bosco.
             </h3>
             <p>
-              Seguire il lavoro del cane, osservare il terreno, scoprire ciò che
-              vive sotto i nostri passi. Un’esperienza sul tartufo, con la
-              possibilità di continuare a tavola.
+              Un’esperienza privata sul tartufo per piccoli gruppi, con la
+              possibilità di proseguire con una degustazione o un pasto. Giorno,
+              lingua e programma vengono concordati individualmente.
             </p>
-            <ul class="tags">
-              <li>Format breve · 2–3 ore</li>
-              <li>Piccoli gruppi</li>
-              <li>Visitatori e curiosi del territorio</li>
-            </ul>
             <p class="small">
-              Uscita e degustazione sono moduli distinti: inclusioni, luogo e
-              condizioni saranno indicati nella proposta.
+              Un’offerta distinta dalle uscite sociali: nessuna garanzia di
+              ritrovamento o tartufo da portare a casa incluso automaticamente.
             </p>
             <a
               href="#contatti"
               class="text-link"
-              data-interest="Tartufo e bosco"
+              data-interest="Private Truffle Experience"
             >
-              Parliamo della tua uscita ↗
+              Richiedi un’esperienza privata ↗
             </a>
           </div>
           <aside lang="en">
             <p class="eyebrow">VISITING UMBRIA?</p>
             <h4>
-              Discover the forest
+              A private truffle experience.
               <br />
-              through truffles.
+              Your group, your enquiry.
             </h4>
             <p>
-              A small-group experience around truffles, nature and local
-              knowledge. Tell us your dates, group size and preferred language.
-              Location and availability are confirmed individually.
+              Explore the woods with a truffle hunter and dog, with an optional
+              tasting or meal. Tell us your dates, group size and language. The
+              location, programme, price and availability will be confirmed in
+              your quotation.
             </p>
             <a
               href="#contatti"
               class="text-link"
-              data-interest="Tartufo e bosco"
+              data-interest="Private Truffle Experience"
             >
-              Plan your experience ↗
+              Plan your private experience ↗
             </a>
           </aside>
         </article>
-        <div class="pair">
-          <article id="bootcamps" class="experience">
-            <p class="eyebrow">BOOTCAMPS / CORPO E NATURA</p>
-            <h3>
-              Pratica, presenza,
-              <br />
-              esperienza.
-            </h3>
-            <p>
-              Arti marziali all’aperto e bootcamp esperienziali: movimento,
-              ascolto e lavoro con il gruppo. Una giornata o un weekend, con
-              attività e conduzione definite per ogni edizione.
-            </p>
-            <p class="small">
-              Prime proposte in progettazione. Livello e requisiti saranno
-              espliciti.
-            </p>
-            <a href="#contatti" class="text-link" data-interest="Bootcamp">
-              Mi interessa questo percorso ↗
-            </a>
-          </article>
-          <article class="experience">
-            <p class="eyebrow">03 · PIANTE, TRADIZIONI, CONTEMPLAZIONE</p>
-            <h3>
-              Conoscenze vive,
-              <br />
-              tempo condiviso.
-            </h3>
-            <p>
-              Uscite sulle piante spontanee, racconti delle tradizioni e
-              incontri contemplativi. Quando previsto, una degustazione
-              preparata da operatori competenti conclude l’esperienza.
-            </p>
-            <p class="small">
-              Proposte culturali ed esperienziali, non prestazioni sanitarie o
-              promesse terapeutiche.
-            </p>
-            <a
-              href="#contatti"
-              class="text-link"
-              data-interest="Piante e tradizioni"
-            >
-              Scopriamo le possibilità ↗
-            </a>
-          </article>
-        </div>
       </section>
       <section id="percorsi" class="dark-section">
         <div class="shell pair">
           <div>
-            <p class="eyebrow">02 / UNA CONTINUITÀ POSSIBILE</p>
+            <p class="eyebrow">02 / FLOW IMMERSIVE</p>
             <h2>
-              Puoi fermarti un giorno.
+              Due o tre giorni.
               <br />
-              <em>O andare più a fondo.</em>
+              <em>Un tempo da vivere insieme.</em>
             </h2>
             <p>
-              Non c’è un percorso obbligato. Un’uscita sul tartufo può bastare a
-              se stessa; chi desidera continuare può trovare una giornata, un
-              weekend o un’esperienza più lunga.
+              Natura, corpo, conoscenza e vita di gruppo. Un programma
+              essenziale, con movimento e principi marziali, osservazione del
+              paesaggio, momenti contemplativi facoltativi e convivialità.
             </p>
             <a
               class="button light"
               href="#contatti"
-              data-interest="Ritiro di sette giorni"
+              data-interest="FLOW Immersive — 2–3 giorni"
             >
-              Esprimi interesse per il ritiro ↗
+              Esprimi interesse per Immersive ↗
             </a>
           </div>
           <ol class="path-steps">
             <li>
-              <span>INCONTRARE</span>
-              <h3>Poche ore nel bosco</h3>
-              <p>Un primo contatto con il territorio e le persone.</p>
-            </li>
-            <li>
-              <span>APPROFONDIRE</span>
-              <h3>Una giornata o un weekend</h3>
-              <p>Un tema preciso, più pratica, tempo per il gruppo.</p>
-            </li>
-            <li>
-              <span>IMMERGERSI</span>
-              <h3>Un ritiro di sette giorni</h3>
+              <span>PRATICA</span>
+              <h3>Corpo e presenza</h3>
               <p>
-                Un progetto futuro fra natura, corpo e contemplazione. Luogo,
-                programma e date da definire. L’interesse non è una prenotazione
-                e qui non viene richiesto alcun pagamento.
+                Attività adattate al livello del gruppo, con conduzione e
+                requisiti espliciti.
+              </p>
+            </li>
+            <li>
+              <span>CONOSCENZA</span>
+              <h3>Natura e cultura</h3>
+              <p>
+                Pochi temi coerenti, approfonditi con professionisti e docenti
+                pertinenti.
+              </p>
+            </li>
+            <li>
+              <span>INCONTRO</span>
+              <h3>Spazio per il gruppo</h3>
+              <p>
+                Pause, pasti e condivisione senza obbligo di partecipare a ogni
+                pratica. Sede, professionisti, date, ospitalità e prezzo sono da
+                definire. L’interesse non è una prenotazione e qui non viene
+                richiesto alcun pagamento.
               </p>
             </li>
           </ol>
+        </div>
+      </section>
+      <section id="servizi" class="section shell">
+        <div class="section-heading">
+          <p class="eyebrow">SU RICHIESTA</p>
+          <h2>
+            Tartufo fresco.
+            <br />
+            <em>Pratica personale.</em>
+          </h2>
+        </div>
+        <div class="pair">
+          <article class="experience">
+            <h3>Tartufo su ordinazione</h3>
+            <p>
+              Segnala specie o preferenza, quantità in grammi, località e data
+              desiderata. Disponibilità, provenienza, prezzo, venditore e
+              modalità di consegna saranno precisati prima di ogni eventuale
+              ordine.
+            </p>
+            <p class="small">
+              Questa è una richiesta di informazioni: nessun acquisto o
+              pagamento viene concluso dal sito. Altri prodotti tipici e
+              naturali sono sviluppi futuri.
+            </p>
+            <a
+              class="text-link"
+              href="#contatti"
+              data-interest="Tartufo fresco su ordinazione"
+            >
+              Richiedi disponibilità tartufo ↗
+            </a>
+          </article>
+          <article class="experience">
+            <h3>Lezioni di arti marziali</h3>
+            <p>
+              Richieste per lezioni individuali o piccoli gruppi, online o in
+              presenza, su appuntamento. Indica esperienza, obiettivi e
+              modalità: disciplina, conduzione, requisiti e disponibilità
+              saranno concordati.
+            </p>
+            <a
+              class="text-link"
+              href="#contatti"
+              data-interest="Lezioni arti marziali"
+            >
+              Parliamo della tua pratica ↗
+            </a>
+          </article>
         </div>
       </section>
       <section class="section shell pair resource-section">
@@ -351,18 +406,6 @@ const description =
           <p class="small">
             Libri, video e risorse digitali sono parte del progetto in sviluppo.
             Nessun prodotto a pagamento è acquistabile da questa pagina.
-          </p>
-          <h3>Una storia da vivere. E da raccontare.</h3>
-          <p>
-            Su YouTube voglio documentare il percorso reale: la preparazione,
-            Alba, le uscite, gli allenamenti e gli incontri; in futuro, i viaggi
-            e la realizzazione dei progetti. Le testimonianze saranno libere,
-            raccolte con consenso e senza pressioni a comparire.
-          </p>
-          <p class="small">
-            L’AI potrà aiutare nel montaggio, nei testi e nella creazione di
-            risorse. Il racconto resterà ancorato a ciò che viviamo davvero. Il
-            canale dedicato non è ancora disponibile da questa pagina.
           </p>
         </div>
         <div class="paper-preview" aria-hidden="true">
@@ -487,7 +530,7 @@ const description =
             <a
               class="button light"
               href="#contatti"
-              data-interest="Progetti di cura e restituzione"
+              data-interest="Partner ambientali"
             >
               Costruiamo un progetto ↗
             </a>
@@ -527,7 +570,7 @@ const description =
           <p>
             Racconta che cosa ti interessa, in quanti siete e quando vorresti
             partecipare. Per sedi e collaborazioni, descrivi la tua proposta.
-            Puoi segnalare interesse per i bootcamp o proporti come docente,
+            Puoi segnalare interesse per i tre format o proporti come docente,
             professionista, struttura ospitante o partner ambientale.
           </p>
           <p>
@@ -579,6 +622,72 @@ const description =
               />
             </label>
           </div>
+          <fieldset id="truffle-fields" hidden>
+            <legend>Tartufo fresco — dettagli della richiesta</legend>
+            <label>
+              Specie o preferenza
+              <input
+                name="species"
+                maxlength="100"
+                placeholder="Es. specie da consigliare"
+              />
+            </label>
+            <label>
+              Quantità in grammi
+              <input
+                name="grams"
+                type="number"
+                min="1"
+                max="100000"
+                inputmode="numeric"
+              />
+            </label>
+          </fieldset>
+          <fieldset id="lesson-fields" hidden>
+            <legend>Lezioni — modalità e livello</legend>
+            <label>
+              Modalità
+              <select name="mode">
+                <option>Da concordare</option>
+                <option>Online</option>
+                <option>In presenza — individuale</option>
+                <option>In presenza — gruppo</option>
+              </select>
+            </label>
+            <label>
+              Esperienza e obiettivo
+              <input
+                name="level"
+                maxlength="200"
+                placeholder="Es. principiante, lavoro sui fondamentali"
+              />
+            </label>
+          </fieldset>
+          <fieldset id="meal-fields" hidden>
+            <legend>Eventuale gastronomia</legend>
+            <label>
+              Pasto o degustazione
+              <select name="meal">
+                <option>Da concordare</option>
+                <option>Solo uscita</option>
+                <option>Vorrei un preventivo con pasto o buffet</option>
+              </select>
+            </label>
+          </fieldset>
+          <div class="form-row">
+            <label>
+              Località o destinazione
+              <input name="location" maxlength="150" />
+            </label>
+            <label>
+              Lingua preferita / Preferred language
+              <input
+                name="language"
+                maxlength="80"
+                placeholder="Italiano / English"
+              />
+            </label>
+          </div>
           <label>
             La tua richiesta
             <textarea
@@ -618,8 +727,14 @@ const description =
           <p id="request-status" role="status" aria-live="polite"></p>
           <noscript>
             <p>
-              Il modulo richiede JavaScript. Esperienze e taccuino restano
-              consultabili.
+              Il modulo richiede JavaScript. Puoi scrivere direttamente a
+              Riccardo tramite
+              <a
+                href={`https://wa.me/${launchContact.whatsapp.replace(/\D/g, '')}`}
+              >
+                WhatsApp
+              </a>
+              , indicando esperienza, data e numero di persone.
             </p>
           </noscript>
         </form>
@@ -645,17 +760,56 @@ const description =
       const select = document.querySelector<HTMLSelectElement>('#interest');
       const text = document.querySelector<HTMLTextAreaElement>('#request-text');
       const status = document.querySelector<HTMLElement>('#request-status');
+      const syncFields = () => {
+        const interest = select?.value || '';
+        for (const [id, visible] of [
+          ['truffle-fields', interest === 'Tartufo fresco su ordinazione'],
+          ['lesson-fields', interest === 'Lezioni arti marziali'],
+          [
+            'meal-fields',
+            interest === 'Private Truffle Experience' ||
+              interest === 'Nature Experience — uscita sociale',
+          ],
+        ] as const) {
+          const section = document.getElementById(id);
+          if (section) {
+            section.hidden = !visible;
+            section
+              .querySelectorAll<HTMLInputElement | HTMLSelectElement>(
+                'input,select',
+              )
+              .forEach((input) => {
+                input.disabled = !visible;
+              });
+          }
+        }
+      };
+      select?.addEventListener('change', syncFields);
+      syncFields();
       document
         .querySelectorAll<HTMLAnchorElement>('[data-interest]')
         .forEach((link) =>
           link.addEventListener('click', () => {
             if (select) select.value = link.dataset.interest || '';
+            syncFields();
           }),
         );
       form?.addEventListener('submit', (event) => {
         event.preventDefault();
         const d = new FormData(form);
-        const message = `FLOW — ${String(d.get('interest') || '')}\nNome: ${String(d.get('name') || '')}\nPartecipanti: ${String(d.get('people') || 'da definire')}\nPeriodo: ${String(d.get('period') || 'da definire')}\n\n${String(d.get('message') || '')}\n\nRichiesta di informazioni, non prenotazione.`;
+        const details = [
+          ['Località', 'location'],
+          ['Lingua', 'language'],
+          ['Specie/preferenza', 'species'],
+          ['Grammi', 'grams'],
+          ['Modalità', 'mode'],
+          ['Esperienza/obiettivo', 'level'],
+          ['Pasto/buffet', 'meal'],
+        ]
+          .filter(([, key]) => d.get(key))
+          .map(([label, key]) => `${label}: ${String(d.get(key))}`)
+          .join('\n');
+        const message = `FLOW — ${String(d.get('interest') || '')}\nNome: ${String(d.get('name') || '')}\nPartecipanti: ${String(d.get('people') || 'da definire')}\nPeriodo/data: ${String(d.get('period') || 'da definire')}\n${details}\n\n${String(d.get('message') || '')}\n\nRichiesta di informazioni, non prenotazione né ordine. Prezzo e disponibilità da confermare.`;
         if (text) text.value = message;
         const result = document.querySelector<HTMLElement>('#request-result');
         if (result) result.hidden = false;

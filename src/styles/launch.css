@@ -8,6 +8,16 @@
   --serif: 'Source Serif 4 Variable', Georgia, serif;
   --sans: 'Manrope Variable', Arial, sans-serif;
 }
+fieldset {
+  min-width: 0;
+  border: 1px solid var(--line);
+  padding: 18px;
+  margin: 0 0 22px;
+}
+legend {
+  padding-inline: 6px;
+  font-weight: 600;
+}
 * {
   box-sizing: border-box;
   min-width: 0;
